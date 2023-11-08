@@ -2,6 +2,7 @@ package com.mygdx.game;
 
 public class Player {
 	
+	private String name;
 	private int attackBonus;
 	
 	private Bag bag;
