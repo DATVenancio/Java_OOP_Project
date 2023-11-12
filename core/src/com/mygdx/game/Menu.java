@@ -1,17 +1,14 @@
 package com.mygdx.game;
 
-import com.mygdx.game.*;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.TimeUtils;
-import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.InputProcessor;
-
 
 public class Menu {
     private SpriteBatch batch;
+    private String name_player;
 
     // Texture des menus
     private Texture menu1Texture;
@@ -36,22 +33,35 @@ public class Menu {
     private Texture IntelligenceHomme;
     private Texture IntelligenceFemme;
 
-    // Texture du moment pour les boucles
+    // Partie Prologue & Histoire
+    private Texture Prologue;
+    private Texture Histoire1;
+    private Texture Histoire2;
+    private Texture Histoire3;
+
+    // Texture actuelle pour les boucles
     private Texture currentTexture;
     private long startTime;
+    // Booléen pour passer de menu1 à menu2
     private boolean showMenu1 = true;
+    // On initialise la page à 0
     private int page = 0;
 
     public Menu() {
         batch = new SpriteBatch();
 
+        // On vient définir les textures-images pour les menus
         menu1Texture = new Texture("menu1.jpg");
         menu2Texture = new Texture("menu2.jpg");
         menu3Texture = new Texture("menu3.jpg");
         regleTexture = new Texture("regles.jpg");
+
+        // On vient définir les textures-images pour le choix de la caractéristique
         choixForce = new Texture("choixforce.jpg");
         choixDexterite = new Texture("choixdexterite.jpg");
         choixIntelligence = new Texture("choixintelligence.jpg");
+
+        // On vient définir les textures-images pour les fiches personnages
         ForceHomme = new Texture("forcehomme.jpg");
         ForceFemme = new Texture("forcefemme.jpg");
         DexteriteHomme = new Texture("dexteritehomme.jpg");
@@ -59,6 +69,13 @@ public class Menu {
         IntelligenceHomme = new Texture("intelligencehomme.jpg");
         IntelligenceFemme = new Texture("intelligencefemme.jpg");
 
+        // On vient définir les textures-images pour le prologue et les histoires
+        Prologue = new Texture("prologue.jpg");
+        Histoire1 = new Texture("histoire1.jpg");
+        Histoire2 = new Texture("histoire2.jpg");
+        Histoire3 = new Texture("histoire3.jpg");
+
+        // On vient initialiser le temps
         startTime = TimeUtils.millis();
     }
 
@@ -66,14 +83,16 @@ public class Menu {
     {
         Gdx.input.setInputProcessor(new InputProcessor() {
 
+            // On vient utiliser la fonction touchUp pour capter la zone d'écran cliquée
             @Override
             public boolean touchUp(int screenX, int screenY, int pointer, int bouton) {
 
-                if (screenX >= 180 && screenX <= 380 && screenY >= 60 && screenY <= 135) {
-                    // bouton retour
+                // Pour le bouton retour
+                if (screenX >= 180 && screenX <= 380 && screenY >= 60 && screenY <= 135){
                     page = 0;
                 }
 
+                // Si la texture actuelle est celle du menu 2 (nouvelle partie/ règles du jeu/quitter)
                 if (currentTexture == menu2Texture) {
                     if (screenX >= 485 && screenX <= 930 && screenY >= 360 && screenY <= 510) {
                         // bouton "Nouvelle partie"
@@ -89,74 +108,169 @@ public class Menu {
                     }
                 }
 
+                // Si la texture actuelle est celle du menu 3 (choix d'une caractéristique)
                 if (currentTexture == menu3Texture) {
                     if (screenX >= 180 && screenX <= 380 && screenY >= 60 && screenY <= 135) {
                         // bouton retour
                         page = 0;
                     }
                     if (screenX >= 235 && screenX <= 680 && screenY >= 220 && screenY <= 990) {
-                        // bouton "Force"
+                        // choix "Force"
                         page = 4;
                     }
                     if (screenX >= 885 && screenX <= 1330 && screenY >= 220 && screenY <= 990) {
-                        // bouton "Dextérité"
+                        // choix "Dextérité"
                         page = 5;
                     }
                     if (screenX >= 1510 && screenX <= 1955 && screenY >= 220 && screenY <= 990) {
-                        // bouton "Intelligence"
+                        // choix "Intelligence"
                         page = 6;
                     }
                 }
 
+                // Si la texture actuelle est choixForce ou choixDexterite ou choixIntelligence
                 if (currentTexture == choixForce || currentTexture == choixDexterite || currentTexture == choixIntelligence) {
                     if (screenX >= 180 && screenX <= 380 && screenY >= 60 && screenY <= 135) {
                         // bouton retour
                         page = 1;
                     }
+
+                    // Si on est dans la zone "Homme" des pages
                     if (screenX >= 600 && screenX <= 1040 && screenY >= 240 && screenY <= 965) {
-                        if(currentTexture == choixForce){// bouton "Homme Force"
+                        if(currentTexture == choixForce){
+                            // bouton "Choix Homme Force"
                             page = 7;
                         }
                         if(currentTexture == choixDexterite){
+                            // bouton "Choix Homme Dexterite"
                             page = 9;
                         }
                         if(currentTexture == choixIntelligence){
+                            // bouton "Choix Homme Intelligence
                             page = 11;
                         }
                     }
+
+                    // Si on est dans la zone "Femme" des pages
                     if (screenX >= 1155 && screenX <= 1595 && screenY >= 240 && screenY <= 965) {
-                        // bouton "Femme Force"
-                        if(currentTexture == choixForce){// bouton "Homme Force"
+                        if(currentTexture == choixForce){
+                            // bouton "Choix Femme Force"
                             page = 8;
                         }
                         if(currentTexture == choixDexterite){
+                            // bouton "Choix Femme Dexterite"
                             page = 10;
                         }
                         if(currentTexture == choixIntelligence){
+                            // bouton "Choix Femme Intelligence"
                             page = 12;
                         }
                     }
                 }
+
+                // Si la texture actuelle est "Choix Force Homme" ou "Choix Force Femme"
                 if (currentTexture == ForceHomme || currentTexture == ForceFemme) {
                     if (screenX >= 180 && screenX <= 380 && screenY >= 60 && screenY <= 135) {
                         // bouton retour
                         page = 4;
                     }
+                    if(screenX >= 1720 && screenX <= 2030 && screenY >= 935 && screenY <= 1055 && currentTexture == ForceHomme){
+                        // On vient relever que le nom du player est "ForceHomme"
+                        name_player = "ForceHomme";
+                        // On l'affiche dans le terminal pour vérifier que ça fonctionne
+                        System.out.println(name_player);
+                        page = 13;
+                    }
+                    if(screenX >= 1720 && screenX <= 2030 && screenY >= 935 && screenY <= 1055 && currentTexture == ForceFemme){
+                        // On vient relever que le nom du player est "ForceFemme"
+                        name_player = "ForceFemme";
+                        // On l'affiche dans le terminal pour vérifier que ça fonctionne
+                        System.out.println(name_player);
+                        page = 13;
+                    }
                 }
 
+                // Si la texture actuelle est "Choix Dexterite Homme" ou "Choix Dexterite Femme"
                 if (currentTexture == DexteriteHomme || currentTexture == DexteriteFemme) {
                     if (screenX >= 180 && screenX <= 380 && screenY >= 60 && screenY <= 135) {
                         // bouton retour
                         page = 5;
                     }
+                    if(screenX >= 1720 && screenX <= 2030 && screenY >= 935 && screenY <= 1055 && currentTexture == DexteriteHomme){
+                        // On vient relever que le nom du player est "DexteriteHomme" et on l'affiche
+                        name_player = "DexteriteHomme";
+                        System.out.println(name_player);
+                        page = 13;
+                    }
+                    if(screenX >= 1720 && screenX <= 2030 && screenY >= 935 && screenY <= 1055 && currentTexture == DexteriteFemme){
+                        // On vient relever que le nom du player est "DexteriteFemme" et on l'affiche
+                        name_player = "DexteriteFemme";
+                        System.out.println(name_player);
+                        page = 13;
+                    }
                 }
 
+                // Si la texture actuelle est "Choix Intelligence Homme" ou "Choix Intelligence Femme"
                 if (currentTexture == IntelligenceHomme || currentTexture == IntelligenceFemme) {
                     if (screenX >= 180 && screenX <= 380 && screenY >= 60 && screenY <= 135) {
                         // bouton retour
                         page = 6;
                     }
+                    if(screenX >= 1720 && screenX <= 2030 && screenY >= 935 && screenY <= 1055 && currentTexture == IntelligenceHomme){
+                        // On vient relever le nom du player et on l'affiche
+                        name_player = "IntelligenceHomme";
+                        System.out.println(name_player);
+                        page = 13;
+                    }
+                    if(screenX >= 1720 && screenX <= 2030 && screenY >= 935 && screenY <= 1055 && currentTexture == IntelligenceFemme){
+                        // On vient relever le nom du player et on l'affiche
+                        name_player = "IntelligenceFemme";
+                        System.out.println(name_player);
+                        page = 13;
+                    }
                 }
+
+                // Si la texture actuelle est Prologue, on peut cliquer n'importe où sur l'écran pour continuer
+                if (currentTexture == Prologue && screenX >= 0 && screenX <= 1920 && screenY >= 0 && screenY <= 1080) {
+                    page = 14;
+                }
+
+                // Si la texture actuelle est Histoire page 1
+                if (currentTexture == Histoire1) {
+                    if (screenX >= 180 && screenX <= 380 && screenY >= 60 && screenY <= 135) {
+                        // bouton retour
+                        page = 1;
+                    }
+                    if (screenX >= 1665 && screenX <= 1900 && screenY >= 950 && screenY <= 1040) {
+                        // bouton "Suivant"
+                        page = 15;
+                    }
+                }
+
+                // Si la texture actuelle est Histoire page 2
+                if (currentTexture == Histoire2) {
+                    if (screenX >= 1385 && screenX <= 1625 && screenY >= 950 && screenY <= 1040) {
+                        // bouton "Précédent"
+                        page = 14;
+                    }
+                    if (screenX >= 1665 && screenX <= 1900 && screenY >= 950 && screenY <= 1040) {
+                        // bouton "Suivant"
+                        page = 16;
+                    }
+                }
+
+                // Si la texture actuelle est Histoire page 3
+                if (currentTexture == Histoire3) {
+                    if (screenX >= 1385 && screenX <= 1625 && screenY >= 950 && screenY <= 1040) {
+                        // bouton "Précédent"
+                        page = 15;
+                    }
+                    if (screenX >= 1665 && screenX <= 1900 && screenY >= 950 && screenY <= 1040) {
+                        // bouton "Démarrer"
+                        page = 17;
+                    }
+                }
+
                 return false;
             }
 
@@ -202,29 +316,36 @@ public class Menu {
         });
     }
 
-    public void dessinerMenu()   // dessiner le menu
+    public void dessinerMenu()   // On vient dessiner le menu initial
     {
-        batch.begin();  // obligatoire pour commencer un dessin sur le SpriteBatch
+        batch.begin();  // Obligatoire pour commencer un dessin sur le SpriteBatch
 
+        // On vient définir la taille pour ajuster à l'écran et centrer
         float imageWidth = menu1Texture.getWidth();
         float imageHeight = menu1Texture.getHeight();
 
         float x = (Gdx.graphics.getWidth() - imageWidth) / 2;
         float y = (Gdx.graphics.getHeight() - imageHeight) / 2;
 
+        // On vient définir le temps
         long currentTime = TimeUtils.millis();
         long elapsedTime = currentTime - startTime;
 
+        // On vient afficher menu 1 pendant 3 secondes
         if (showMenu1 && elapsedTime < 3000) {
+            // on affiche
             batch.draw(menu1Texture, x, y);
+            // on informe que la texture actuelle est menu1
             currentTexture = menu1Texture;
         } else {
+            // au dela de 3 secondes, showmenu est false donc on affiche menu2
             showMenu1 = false;
             batch.draw(menu2Texture, x, y);
+            // on informe que la texture actuelle est menu2
             currentTexture = menu2Texture;
         }
 
-        batch.end();  // obligatoire pour finir le dessin sur un SpriteBatch
+        batch.end();  // Obligatoire pour finir le dessin sur un SpriteBatch
 
     }
 
@@ -233,6 +354,9 @@ public class Menu {
     {
         batch.begin();
 
+        // on vient dessiner les différentes pages en fonction de la page entrée en paramètre
+
+        // dimensionnement de l'image
         float imageWidth = menu3Texture.getWidth();
         float imageHeight = menu3Texture.getHeight();
 
@@ -263,31 +387,46 @@ public class Menu {
             batch.draw(choixIntelligence, x, y);
             currentTexture = choixIntelligence;
         }
-        if(page == 7)  {// si on est à la page Choix Intelligence
+        if(page == 7)  {// si on est à la page Choix Force Homme
             batch.draw(ForceHomme, x, y);
             currentTexture = ForceHomme;
         }
-        if(page == 8)  {// si on est à la page Choix Intelligence
+        if(page == 8)  {// si on est à la page Choix Force Femme
             batch.draw(ForceFemme, x, y);
             currentTexture = ForceFemme;
         }
-        if(page == 9)  {// si on est à la page Choix Intelligence
+        if(page == 9)  {// si on est à la page Choix Dextérité Homme
             batch.draw(DexteriteHomme, x, y);
             currentTexture = DexteriteHomme;
         }
-        if(page == 10)  {// si on est à la page Choix Intelligence
+        if(page == 10)  {// si on est à la page Choix Dextérité Femme
             batch.draw(DexteriteFemme, x, y);
             currentTexture = DexteriteFemme;
         }
-        if(page == 11)  {// si on est à la page Choix Intelligence
+        if(page == 11)  {// si on est à la page Choix Intelligence Homme
             batch.draw(IntelligenceHomme, x, y);
             currentTexture = IntelligenceHomme;
         }
-        if(page == 12)  {// si on est à la page Choix Intelligence
+        if(page == 12)  {// si on est à la page Choix Intelligence Femme
             batch.draw(IntelligenceFemme, x, y);
             currentTexture = IntelligenceFemme;
         }
-
+        if(page == 13)  {// si on est à la page Prologue
+            batch.draw(Prologue, x, y);
+            currentTexture = Prologue;
+        }
+        if(page == 14)  {// si on est à la page Histoire 1
+            batch.draw(Histoire1, x, y);
+            currentTexture = Histoire1;
+        }
+        if(page == 15)  {// si on est à la page Histoire 2
+            batch.draw(Histoire2, x, y);
+            currentTexture = Histoire2;
+        }
+        if(page == 16)  {// si on est à la page Histoire 3
+            batch.draw(Histoire3, x, y);
+            currentTexture = Histoire3;
+        }
         batch.end();
     }
 
@@ -333,36 +472,57 @@ public class Menu {
             case 12:
                 dessinerPage(12);
                 break;
+            case 13:
+                dessinerPage(13);
+                break;
+            case 14:
+                dessinerPage(14);
+                break;
+            case 15:
+                dessinerPage(15);
+                break;
+            case 16:
+                dessinerPage(16);
+                break;
         }
     }
 
-    public void resize(int width, int height) {
-        // Ajoutez ici votre logique de redimensionnement
+    public void resize() {
+        // logique de redimensionnement
     }
 
     public void pause() {
-        // Ajoutez ici votre logique de pause
+        // logique de pause
     }
 
     public void resume() {
-        // Ajoutez ici votre logique de reprise
+        // logique de reprise
     }
 
     public void dispose() {
         // pour la libération mémoire
         batch.dispose();
+        // menu
         menu1Texture.dispose();
         menu2Texture.dispose();
         menu3Texture.dispose();
         regleTexture.dispose();
+        // choix caractéristique
         choixForce.dispose();
         choixDexterite.dispose();
         choixIntelligence.dispose();
+        // personnages
         ForceHomme.dispose();
         ForceFemme.dispose();
         DexteriteHomme.dispose();
         DexteriteFemme.dispose();
         IntelligenceHomme.dispose();
         IntelligenceFemme.dispose();
+        // prologue et histoire
+        Prologue.dispose();
+        Histoire1.dispose();
+        Histoire2.dispose();
+        Histoire3.dispose();
     }
+
 }
