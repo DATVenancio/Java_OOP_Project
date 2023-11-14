@@ -3,12 +3,25 @@ package com.mygdx.game;
 public abstract class Weapon extends Item {
 	private int power;
 	
-
+	
 	public abstract void increaseAtribute(Player player);
 	public abstract void decreaseAtribute(Player player);
+	
+	@Override
+	public void actionWhenAdded(Player player) {
+		// TODO Auto-generated method stub
+		increaseAtribute(player);
+		
+	}
+
+	@Override
+	public void actionWhenRemoved(Player player) {
+		// TODO Auto-generated method stub
+		decreaseAtribute(player);
+	}
 
 	
-	//gets ans sets
+	//gets and sets
 	public int getPower() {
 		return power;
 	}
