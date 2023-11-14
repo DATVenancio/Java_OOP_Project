@@ -1,5 +1,8 @@
 package com.mygdx.game;
 
-public class Designation {
-
+public interface Designation {
+	public abstract void changeAttributes(Player player);
+	
+	
+	
 }

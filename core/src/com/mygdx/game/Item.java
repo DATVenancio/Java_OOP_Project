@@ -1,17 +1,31 @@
 package com.mygdx.game;
 
 public abstract class Item {
-	private float weigth;
+	private float weight;
 	private String name;
 	private String description;
 
+	public abstract void actionWhenAdded(Player player);
+	public abstract void actionWhenRemoved(Player player);
 	
-	//gets ans sets
-	public float getWeigth() {
-		return weigth;
+	
+	
+	public void increaseBagTotalWeigth(Bag bag) {
+		float current_total_weight = bag.getTotalWeight();
+		bag.setTotalWeight(current_total_weight+this.weight);
 	}
-	public void setWeigth(float weigth) {
-		this.weigth = weigth;
+	public void decreaseBagTotalWeigth(Bag bag) {
+		float current_total_weight = bag.getTotalWeight();
+		bag.setTotalWeight(current_total_weight-this.weight);
+	}
+	
+	
+	
+	public float getWeight() {
+		return weight;
+	}
+	public void setWeight(float weigth) {
+		this.weight = weigth;
 	}
 	public String getName() {
 		return name;
@@ -27,4 +41,5 @@ public abstract class Item {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
 }

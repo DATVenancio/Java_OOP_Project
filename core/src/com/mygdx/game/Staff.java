@@ -1,7 +1,7 @@
 package com.mygdx.game;
 
 public class Staff extends Weapon {
-
+	
 	
 	@Override
 	public void increaseAtribute(Player player) {
@@ -19,5 +19,8 @@ public class Staff extends Weapon {
 		}
 		
 	}
+
+	
+	
 
 }
