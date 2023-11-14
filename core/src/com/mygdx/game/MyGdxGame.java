@@ -1,11 +1,7 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.ApplicationAdapter;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
-import com.badlogic.gdx.utils.TimeUtils;
 
 public class MyGdxGame extends ApplicationAdapter {
 	private Menu menu;
@@ -23,7 +19,7 @@ public class MyGdxGame extends ApplicationAdapter {
 
 	@Override
 	public void resize(int width, int height) {
-		menu.resize(width, height);
+		menu.resize();
 	}
 
 	@Override

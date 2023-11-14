@@ -5,9 +5,11 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.Input.Keys;
 
-public class Menu {
+public class Menu extends Game {
     private SpriteBatch batch;
+    private Game game;
     private String name_player;
 
     // Texture des menus
@@ -32,7 +34,7 @@ public class Menu {
     private Texture choixIntelligence;
     private Texture IntelligenceHomme;
     private Texture IntelligenceFemme;
-
+    
     // Partie Prologue & Histoire
     private Texture Prologue;
     private Texture Histoire1;
@@ -49,6 +51,7 @@ public class Menu {
 
     public Menu() {
         batch = new SpriteBatch();
+        game = new Game();
 
         // On vient définir les textures-images pour les menus
         menu1Texture = new Texture("menu1.jpg");
@@ -77,6 +80,7 @@ public class Menu {
 
         // On vient initialiser le temps
         startTime = TimeUtils.millis();
+        game.create();
     }
 
     public void manipulerMenu()
@@ -232,7 +236,7 @@ public class Menu {
 
                 // Si la texture actuelle est Prologue, on peut cliquer n'importe où sur l'écran pour continuer
                 if (currentTexture == Prologue && screenX >= 0 && screenX <= 1920 && screenY >= 0 && screenY <= 1080) {
-                    page = 14;
+                        page = 14;
                 }
 
                 // Si la texture actuelle est Histoire page 1
@@ -427,6 +431,9 @@ public class Menu {
             batch.draw(Histoire3, x, y);
             currentTexture = Histoire3;
         }
+        if(page == 17){
+            game.render();
+        }
         batch.end();
     }
 
@@ -484,6 +491,9 @@ public class Menu {
             case 16:
                 dessinerPage(16);
                 break;
+            case 17 :
+                dessinerPage(17);
+                break;
         }
     }
 
@@ -523,6 +533,14 @@ public class Menu {
         Histoire1.dispose();
         Histoire2.dispose();
         Histoire3.dispose();
+        game.dispose();
     }
 
+    public int getPage() {
+        return page;
+    }
+
+    public String getNamePlayer() {
+        return name_player;
+    }
 }
