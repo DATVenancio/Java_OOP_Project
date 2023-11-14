@@ -13,7 +13,6 @@ public class Player {
 	private Designation designation;
 	
 	
-
 	
 	
 	
@@ -23,6 +22,8 @@ public class Player {
 	public void decreaseAttackBonus(int decrease) {
 		this.attackBonus = this.attackBonus - decrease;
 	}
+	
+	
 	
 	
 	//gets and sets
