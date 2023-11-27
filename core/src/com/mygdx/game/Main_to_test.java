@@ -16,9 +16,14 @@ public class Main_to_test {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Player player= new Player();
-		initial_configuration(player);
+		Enemy enemy = new Dragon();
 		
-		System.out.println(player.getName());
+		CombatManager combatManager = CombatManager.getInstance();
+		
+		initial_configuration(combatManager,player,enemy);
+		
+		
+		
 		
 		
 		//tests
@@ -36,6 +41,9 @@ public class Main_to_test {
 		test_weapon_bow(player);
 		
 		
+		test_combat_turn(combatManager, enemy);
+		
+		
 		
 		
 		
@@ -50,13 +58,6 @@ public class Main_to_test {
 	}
 	
 
-	public static void initial_configuration(Player player) {
-		
-		player = create_player(player);
-
-		
-	}
-	
 	
 	public static void test_designation_strength(Player player) {
 		
@@ -108,7 +109,6 @@ public class Main_to_test {
 			assertTrue(false);
 		}
 	}
-	
 	
 	public static void test_weapon_sword(Player player) {
 		//remove_all_bag_items(player);
@@ -167,14 +167,30 @@ public class Main_to_test {
 		player.getBag().removeItem(bow);
 	}
 	
+	public static void test_combat_turn(CombatManager combatManager, Enemy enemy) {
+		
+		combatManager.createTurn(null, enemy);
+		
+		
+		assertTrue(true);
+	}
 	
 	
-	
+	public static void initial_configuration(CombatManager combatManager,Player player, Enemy enemy) {
+		
+		create_player(player);
+		create_enemy(enemy);
+		combatManager.setPlayer(player);
+
+		
+	}
 	
 	
 	public static Player create_player(Player player) {
 		player.setName("Geralt");
 		player.setAttackBonus(5);
+		player.setLife(40);
+		
 		player.setStregth(0);
 		player.setIntelligence(0);
 		player.setSpeed(0);
@@ -193,6 +209,15 @@ public class Main_to_test {
 		bag.setPlayer(player);
 		return bag;
 	}
+	
+	public static void create_enemy(Enemy enemy) {
+		enemy.setAlive(true);
+		enemy.setAttack(3);
+		enemy.setLife(10);
+		enemy.setName("Fire Dragon");
+	}
+	
+	
 	
 	
 	

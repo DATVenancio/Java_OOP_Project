@@ -1,13 +1,13 @@
-package com.mygdx.game;
+ package com.mygdx.game;
 
 public class CombatManager {
-	private CombatManager instance;
+	private static CombatManager instance;
 	
 	private Player player;
 	
 	private CombatManager() {};
 	
-	public CombatManager getInstance() {
+	public static CombatManager getInstance() {
 		if(instance == null) {
 			instance = new CombatManager();
 		}
@@ -15,8 +15,9 @@ public class CombatManager {
 	}
 	
 	
-	public boolean createCombat(Dice dice,Enemy enemy) {
-		
+	public boolean createTurn(Dice dice,Enemy enemy) {
+
+		/*
 		while(enemyIsAlive(enemy)) {
 			int playerAttack = dice.rollDice()+player.getAttackBonus();
 			int enemyLife = enemy.getLife();
@@ -33,7 +34,8 @@ public class CombatManager {
 			}
 		}
 		return true;
-		
+		*/
+		return true;
 	}
 
 	

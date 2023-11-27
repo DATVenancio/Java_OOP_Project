@@ -4,6 +4,8 @@ public class Player {
 	
 	private String name;
 	private int attackBonus;
+	private int life;
+	
 	private int stregth;
 	private int intelligence;
 	private int speed;
@@ -28,9 +30,17 @@ public class Player {
 	
 	//gets and sets
 
+	public int getLife() {
+		return life;
+	}
+	public void setLife(int life) {
+		this.life = life;
+	}
+	
 	public String getName() {
 		return name;
 	}
+	
 	public void setName(String name) {
 		this.name = name;
 	}
