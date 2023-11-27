@@ -1,5 +1,5 @@
 package com.mygdx.game;
 
-public class Dragon extends Enemy {
+public class Dragon extends Enemy_back {
 
 }

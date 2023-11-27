@@ -1,6 +1,6 @@
 package com.mygdx.game;
 
-public abstract class Enemy {
+public abstract class Enemy_back {
 	private String name;
 	private int life;
 	private int attack;

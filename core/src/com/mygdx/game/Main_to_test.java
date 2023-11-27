@@ -16,7 +16,7 @@ public class Main_to_test {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Player player= new Player();
-		Enemy enemy = new Dragon();
+		Enemy_back enemy = new Dragon();
 		
 		CombatManager combatManager = CombatManager.getInstance();
 		
@@ -167,7 +167,7 @@ public class Main_to_test {
 		player.getBag().removeItem(bow);
 	}
 	
-	public static void test_combat_turn(CombatManager combatManager, Enemy enemy) {
+	public static void test_combat_turn(CombatManager combatManager, Enemy_back enemy) {
 		
 		combatManager.createTurn(null, enemy);
 		
@@ -176,7 +176,7 @@ public class Main_to_test {
 	}
 	
 	
-	public static void initial_configuration(CombatManager combatManager,Player player, Enemy enemy) {
+	public static void initial_configuration(CombatManager combatManager,Player player, Enemy_back enemy) {
 		
 		create_player(player);
 		create_enemy(enemy);
@@ -210,7 +210,7 @@ public class Main_to_test {
 		return bag;
 	}
 	
-	public static void create_enemy(Enemy enemy) {
+	public static void create_enemy(Enemy_back enemy) {
 		enemy.setAlive(true);
 		enemy.setAttack(3);
 		enemy.setLife(10);

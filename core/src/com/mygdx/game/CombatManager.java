@@ -15,7 +15,7 @@ public class CombatManager {
 	}
 	
 	
-	public boolean createTurn(Dice dice,Enemy enemy) {
+	public boolean createTurn(Dice dice,Enemy_back enemy) {
 
 		/*
 		while(enemyIsAlive(enemy)) {
