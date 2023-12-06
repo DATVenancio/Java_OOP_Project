@@ -1,9 +1,10 @@
-package com.mygdx.game;
+package com.mygdx.game.View;
 
+import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 
-public class ElementOnScreen {
+public class ElementOnScreen extends ApplicationAdapter{
 	public Vector2 position;
 	public Sprite sprite;
 

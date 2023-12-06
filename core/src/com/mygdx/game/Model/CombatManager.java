@@ -1,4 +1,4 @@
- package com.mygdx.game;
+ package com.mygdx.game.Model;
 
 public class CombatManager {
 	private static CombatManager instance;
@@ -15,7 +15,7 @@ public class CombatManager {
 	}
 	
 	
-	public boolean createTurn(Dice dice,Enemy_back enemy) {
+	public boolean createTurn(Dice dice,Enemy enemy) {
 
 		/*
 		while(enemyIsAlive(enemy)) {

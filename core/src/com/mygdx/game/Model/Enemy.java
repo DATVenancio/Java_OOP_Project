@@ -1,6 +1,6 @@
-package com.mygdx.game;
+package com.mygdx.game.Model;
 
-public abstract class Enemy_back {
+public abstract class Enemy {
 	private String name;
 	private int life;
 	private int attack;

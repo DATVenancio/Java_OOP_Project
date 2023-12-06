@@ -1,10 +1,24 @@
-package com.mygdx.game;
+package com.mygdx.game.Controller;
 
 
 import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
+
+import com.mygdx.game.Model.Bag;
+import com.mygdx.game.Model.Bow;
+import com.mygdx.game.Model.CombatManager;
+import com.mygdx.game.Model.DexterityDesignation;
+import com.mygdx.game.Model.Dragon;
+import com.mygdx.game.Model.Enemy;
+import com.mygdx.game.Model.IntelligenceDesignation;
+import com.mygdx.game.Model.Item;
+import com.mygdx.game.Model.Player;
+import com.mygdx.game.Model.StrengthDesignation;
+import com.mygdx.game.Model.Sword;
 
 
 
@@ -14,9 +28,17 @@ public class Main_to_test {
 	
 	
 	public static void main(String[] args) {
+		
+		
+		
+		Map<Integer, String> pages = new HashMap<>();
+		
+		
+		System.out.println(pages.get(2));
+		
 		// TODO Auto-generated method stub
 		Player player= new Player();
-		Enemy_back enemy = new Dragon();
+		Enemy enemy = new Dragon();
 		
 		CombatManager combatManager = CombatManager.getInstance();
 		
@@ -167,7 +189,7 @@ public class Main_to_test {
 		player.getBag().removeItem(bow);
 	}
 	
-	public static void test_combat_turn(CombatManager combatManager, Enemy_back enemy) {
+	public static void test_combat_turn(CombatManager combatManager, Enemy enemy) {
 		
 		combatManager.createTurn(null, enemy);
 		
@@ -176,7 +198,7 @@ public class Main_to_test {
 	}
 	
 	
-	public static void initial_configuration(CombatManager combatManager,Player player, Enemy_back enemy) {
+	public static void initial_configuration(CombatManager combatManager,Player player, Enemy enemy) {
 		
 		create_player(player);
 		create_enemy(enemy);
@@ -210,7 +232,7 @@ public class Main_to_test {
 		return bag;
 	}
 	
-	public static void create_enemy(Enemy_back enemy) {
+	public static void create_enemy(Enemy enemy) {
 		enemy.setAlive(true);
 		enemy.setAttack(3);
 		enemy.setLife(10);
