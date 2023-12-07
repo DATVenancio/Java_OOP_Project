@@ -35,12 +35,9 @@ public class Game extends ApplicationAdapter implements InputProcessor {
 		background = new Texture("background.png");
 		
 		
+		createPlayer();
+		createEnemies();
 		
-		
-		playerOnScreen = new PlayerOnScreen(batch);
-		playerController = new PlayerController();
-		playerController.setPlayerOnScreen(playerOnScreen);
-		playerController.chooseCharacter(chosenCharacter);
 
 	}
 
@@ -49,10 +46,10 @@ public class Game extends ApplicationAdapter implements InputProcessor {
 
 		float imageWidth = background.getWidth();
 		float imageHeight = background.getHeight();
-
 		float x = (Gdx.graphics.getWidth() - imageWidth) / 2;
 		float y = (Gdx.graphics.getHeight() - imageHeight) / 2;
 
+		
 		ScreenUtils.clear(0, 0, 0, 1);
 		batch.begin();
 		batch.draw(background, x, y);
@@ -62,12 +59,54 @@ public class Game extends ApplicationAdapter implements InputProcessor {
 		batch.end();
 	}
 
+	
+	
+	
 	@Override
 	public void dispose () {
 		batch.dispose();
 
 	}
 
+
+	public void createPlayer() {
+		playerController = new PlayerController();
+		playerOnScreen = new PlayerOnScreen(batch);
+		
+		playerController.setPlayerOnScreen(playerOnScreen);
+		playerController.chooseCharacter(chosenCharacter);
+	}
+	
+	
+	public void createEnemies() {
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	@Override
 	public boolean keyDown(int keycode) {
 		handleInput(keycode, true);
