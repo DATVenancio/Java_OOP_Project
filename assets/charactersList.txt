@@ -1,0 +1,7 @@
+perso,name,strenght,intelligence,speed,atk bonus,life,
+perso_intelligencehomme,Cedrik,12,45,11,5,30
+perso_intelligencefemme,Elyse,12,45,11,5,30
+perso_forcehomme,Bram,45,12,13,5,30
+perso_forcefemme,Elara,45,12,13,5,30
+perso_dexteritehomme,Tarak,10,14,45,5,30
+perso_dexteritefemme,Lyra,10,14,45,5,30

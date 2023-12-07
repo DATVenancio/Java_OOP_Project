@@ -1,13 +1,14 @@
-package com.mygdx.game;
+package com.mygdx.game.View;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.TimeUtils;
+import com.mygdx.game.Controller.Game;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Input.Keys;
 
-public class Menu extends Game {
+public class Menu {
     private SpriteBatch batch;
     private Game game;
     private String name_player;
@@ -48,10 +49,16 @@ public class Menu extends Game {
     private boolean showMenu1 = true;
     // On initialise la page à 0
     private int page = 0;
+    
+    boolean gameStarted=false;
+    
+    
+    
+    Texture personageTexture;
 
     public Menu() {
         batch = new SpriteBatch();
-        game = new Game();
+        //game = new Game();
 
         // On vient définir les textures-images pour les menus
         menu1Texture = new Texture("menu1.jpg");
@@ -77,10 +84,18 @@ public class Menu extends Game {
         Histoire1 = new Texture("histoire1.jpg");
         Histoire2 = new Texture("histoire2.jpg");
         Histoire3 = new Texture("histoire3.jpg");
+        
+        
+        
+        //personage textures
+        
+        Histoire1 = new Texture("histoire1.jpg");
+        
 
         // On vient initialiser le temps
         startTime = TimeUtils.millis();
-        game.create();
+        //game.create();
+        
     }
 
     public void manipulerMenu()
@@ -143,6 +158,7 @@ public class Menu extends Game {
                     if (screenX >= 600 && screenX <= 1040 && screenY >= 240 && screenY <= 965) {
                         if(currentTexture == choixForce){
                             // bouton "Choix Homme Force"
+                        	System.out.println("Oi");
                             page = 7;
                         }
                         if(currentTexture == choixDexterite){
@@ -180,14 +196,15 @@ public class Menu extends Game {
                     }
                     if(screenX >= 1720 && screenX <= 2030 && screenY >= 935 && screenY <= 1055 && currentTexture == ForceHomme){
                         // On vient relever que le nom du player est "ForceHomme"
-                        name_player = "ForceHomme";
+                    	//createForceMan()
+                    	personageTexture = new Texture("perso_forcehomme.png");
                         // On l'affiche dans le terminal pour vérifier que ça fonctionne
-                        System.out.println(name_player);
+
                         page = 13;
                     }
                     if(screenX >= 1720 && screenX <= 2030 && screenY >= 935 && screenY <= 1055 && currentTexture == ForceFemme){
                         // On vient relever que le nom du player est "ForceFemme"
-                        name_player = "ForceFemme";
+                    	personageTexture = new Texture("perso_forcefemme.png");
                         // On l'affiche dans le terminal pour vérifier que ça fonctionne
                         System.out.println(name_player);
                         page = 13;
@@ -202,13 +219,13 @@ public class Menu extends Game {
                     }
                     if(screenX >= 1720 && screenX <= 2030 && screenY >= 935 && screenY <= 1055 && currentTexture == DexteriteHomme){
                         // On vient relever que le nom du player est "DexteriteHomme" et on l'affiche
-                        name_player = "DexteriteHomme";
+                    	personageTexture = new Texture("perso_dexteritehomme.png");
                         System.out.println(name_player);
                         page = 13;
                     }
                     if(screenX >= 1720 && screenX <= 2030 && screenY >= 935 && screenY <= 1055 && currentTexture == DexteriteFemme){
                         // On vient relever que le nom du player est "DexteriteFemme" et on l'affiche
-                        name_player = "DexteriteFemme";
+                    	personageTexture = new Texture("perso_dexteritefemme.png");
                         System.out.println(name_player);
                         page = 13;
                     }
@@ -222,13 +239,13 @@ public class Menu extends Game {
                     }
                     if(screenX >= 1720 && screenX <= 2030 && screenY >= 935 && screenY <= 1055 && currentTexture == IntelligenceHomme){
                         // On vient relever le nom du player et on l'affiche
-                        name_player = "IntelligenceHomme";
+                    	personageTexture = new Texture("perso_intelligencehomme.png");
                         System.out.println(name_player);
                         page = 13;
                     }
                     if(screenX >= 1720 && screenX <= 2030 && screenY >= 935 && screenY <= 1055 && currentTexture == IntelligenceFemme){
                         // On vient relever le nom du player et on l'affiche
-                        name_player = "IntelligenceFemme";
+                    	personageTexture = new Texture("perso_intelligencefemme.png");
                         System.out.println(name_player);
                         page = 13;
                     }
@@ -432,12 +449,29 @@ public class Menu extends Game {
             currentTexture = Histoire3;
         }
         if(page == 17){
-            game.render();
+        	/*
+        	if(gameStarted==false) {
+        		Game game = new Game();
+            	game.create();
+                game.render();
+                game.dispose();
+                gameStarted=true;
+        	}*/
+        	if(gameStarted==false) {
+        		//game = new Game(personageTexture);
+        		//game.setPlayerImage(personageTexture);
+        		game.create();
+        		
+        		gameStarted=true;
+        	}
+        	
+        	game.render();
         }
         batch.end();
     }
 
     public void render() {
+
         manipulerMenu();
         switch (page) {
             case 0:

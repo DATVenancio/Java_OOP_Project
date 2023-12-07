@@ -1,4 +1,4 @@
-package com.mygdx.game;
+package com.mygdx.game.Controller;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
@@ -8,18 +8,21 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.ScreenUtils;
+import com.mygdx.game.View.PlayerOnScreen;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 
-public class Game extends ApplicationAdapter implements InputProcessor {
+public class Phase01 extends ApplicationAdapter implements InputProcessor {
 	SpriteBatch batch;
 	Texture background;
 	Texture playerImage;
-	Player_game player;
+	PlayerController playerController;
 
-	//Texture enemy01Image;
-	//Vector2 enemy01InicialPosition;
-	//Enemy enemy01;
-
+	
+	
+	public Phase01(Texture playerInfo) {
+		playerImage = playerInfo;
+	}
+	
 	@Override
 	public void create () {
 
@@ -29,13 +32,10 @@ public class Game extends ApplicationAdapter implements InputProcessor {
 
 		batch = new SpriteBatch();
 		background = new Texture("background.png");
-		playerImage = new Texture("perso_forcehomme.png");
-		player = new Player_game(playerImage);
+		
+		playerController = new PlayerController();
+		//player = new PlayerOnScreen(playerImage);
 
-		//enemy01Image = new Texture("enemy01_image.png");
-		//enemy01InicialPosition = new Vector2(Gdx.graphics.getWidth()/2,Gdx.graphics.getHeight()/2);
-		//enemy01 = new Enemy(enemy01InicialPosition,enemy01Image);
-		//enemy01.setDefense(3);
 	}
 
 	@Override
@@ -50,13 +50,8 @@ public class Game extends ApplicationAdapter implements InputProcessor {
 		ScreenUtils.clear(0, 0, 0, 1);
 		batch.begin();
 		batch.draw(background, x, y);
-		player.draw(batch);
-		//enemy01.draw(batch);
+		//player.draw(batch);
 
-		//if(player.getSprite().getBoundingRectangle().overlaps(enemy01.getSprite().getBoundingRectangle())) {
-		//	player.setPlayerStop(true);
-		//	player.fightAgainstEnemy(batch,enemy01.getDefense());
-		//}
 
 		batch.end();
 	}
@@ -64,7 +59,7 @@ public class Game extends ApplicationAdapter implements InputProcessor {
 	@Override
 	public void dispose () {
 		batch.dispose();
-		playerImage.dispose();
+
 	}
 
 	@Override
@@ -81,7 +76,7 @@ public class Game extends ApplicationAdapter implements InputProcessor {
 
 	private void handleInput(int keycode, boolean isKeyPressed) {
 		// Appel à la méthode playerMovement du joueur avec la touche et l'état de pression
-		player.playerMovement();
+		//player.playerMovement();
 	}
 
 	@Override
@@ -118,4 +113,12 @@ public class Game extends ApplicationAdapter implements InputProcessor {
 	public boolean scrolled(float amountX, float amountY) {
 		return false;
 	}
+	public Texture getPlayerImage() {
+		return playerImage;
+	}
+
+	public void setPlayerImage(Texture playerImage) {
+		this.playerImage = playerImage;
+	}
+	
 }

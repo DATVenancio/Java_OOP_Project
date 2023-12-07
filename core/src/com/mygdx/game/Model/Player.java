@@ -1,20 +1,35 @@
-package com.mygdx.game;
+package com.mygdx.game.Model;
+
+import java.util.Map;
 
 public class Player {
 	
 	private String name;
-	private int attackBonus;
-	private int life;
+	
 	
 	private int stregth;
 	private int intelligence;
 	private int speed;
 	
+	private int attackBonus;
+	private int life;
+	
+	
+	
 	
 	private Bag bag;
 	private Designation designation;
 	
+	public Player() {}
 	
+	public Player(Map<String,Object> characterInfo) {
+		this.name = characterInfo.get("name").toString();
+		this.stregth = Integer.parseInt( characterInfo.get("strength").toString());
+		this.intelligence = Integer.parseInt( characterInfo.get("intelligence").toString());
+		this.speed = Integer.parseInt(  characterInfo.get("speed").toString());
+		this.attackBonus = Integer.parseInt(characterInfo.get("attackBonus").toString());
+		this.life = Integer.parseInt(  characterInfo.get("life").toString());
+	}
 	
 	
 	

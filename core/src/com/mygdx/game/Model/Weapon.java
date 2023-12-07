@@ -1,4 +1,4 @@
-package com.mygdx.game;
+package com.mygdx.game.Model;
 
 public abstract class Weapon extends Item {
 	private int power;

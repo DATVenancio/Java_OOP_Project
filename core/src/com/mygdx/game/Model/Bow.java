@@ -1,12 +1,11 @@
-package com.mygdx.game;
+package com.mygdx.game.Model;
 
-public class Staff extends Weapon {
-	
-	
+public class Bow extends Weapon {
+
 	@Override
 	public void increaseAtribute(Player player) {
 		// TODO Auto-generated method stub
-		if(player.getDesignation().getClass().getName() == IntelligenceDesignation.class.getName()) {
+		if(player.getDesignation().getClass().getName() == DexterityDesignation.class.getName()) {
 			player.increaseAttackBonus(this.getPower());
 		}
 	}
@@ -14,13 +13,9 @@ public class Staff extends Weapon {
 	@Override
 	public void decreaseAtribute(Player player) {
 		// TODO Auto-generated method stub
-		if(player.getDesignation().getClass().getName() == IntelligenceDesignation.class.getName()) {
+		if(player.getDesignation().getClass().getName() == DexterityDesignation.class.getName()) {
 			player.decreaseAttackBonus(this.getPower());
 		}
-		
 	}
-
-	
-	
 
 }
