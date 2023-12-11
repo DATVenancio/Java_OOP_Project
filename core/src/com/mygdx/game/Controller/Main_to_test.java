@@ -10,7 +10,6 @@ import java.util.Map;
 
 import com.mygdx.game.Model.Bag;
 import com.mygdx.game.Model.Bow;
-import com.mygdx.game.Model.CombatManager;
 import com.mygdx.game.Model.DexterityDesignation;
 import com.mygdx.game.Model.Dragon;
 import com.mygdx.game.Model.Enemy;
@@ -202,7 +201,7 @@ public class Main_to_test {
 		
 		create_player(player);
 		create_enemy(enemy);
-		combatManager.setPlayer(player);
+		//combatManager.setPlayer(player);
 
 		
 	}
