@@ -1,4 +1,4 @@
-package com.mygdx.game;
+package com.mygdx.game.View;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 
-public class Enemy extends ElementOnScreen {
+public class EnemyOnScreen extends ElementOnScreen {
 	/*private int defense;
 	private int attack;
 

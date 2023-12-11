@@ -1,4 +1,4 @@
-package com.mygdx.game;
+package com.mygdx.game.Model;
 
 public class Bow extends Weapon {
 
