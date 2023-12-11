@@ -29,6 +29,9 @@ public class Player {
 		this.speed = Integer.parseInt(  characterInfo.get("speed").toString());
 		this.attackBonus = Integer.parseInt(characterInfo.get("attackBonus").toString());
 		this.life = Integer.parseInt(  characterInfo.get("life").toString());
+		
+		chooseDesignation(characterInfo.get("designation").toString());
+		this.bag = new Bag();
 	}
 	
 	
@@ -40,6 +43,16 @@ public class Player {
 		this.attackBonus = this.attackBonus - decrease;
 	}
 	
+	public void chooseDesignation(String chosenDesignation){
+		if(chosenDesignation.equals("strength")) {
+			this.designation = new StrengthDesignation(this);
+		}
+		else if(chosenDesignation.equals("intelligence")) {
+			this.designation = new IntelligenceDesignation(this);
+		}else {
+			this.designation = new DexterityDesignation(this);
+		}
+	}
 	
 	
 	
