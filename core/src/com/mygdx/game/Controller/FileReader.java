@@ -32,6 +32,7 @@ public class FileReader {
 					characterInfos.put("speed", lineParts[4]);
 					characterInfos.put("attackBonus", lineParts[5]);
 					characterInfos.put("life", lineParts[6]);
+					characterInfos.put("designation", lineParts[7]);
 				}
 			}
 			

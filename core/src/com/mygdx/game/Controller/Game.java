@@ -1,5 +1,7 @@
 package com.mygdx.game.Controller;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
@@ -8,6 +10,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.ScreenUtils;
+import com.mygdx.game.View.EnemyOnScreen;
 import com.mygdx.game.View.PlayerOnScreen;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 
@@ -15,9 +18,16 @@ public class Game extends ApplicationAdapter implements InputProcessor {
 	SpriteBatch batch;
 	Texture background;
 	String chosenCharacter;
-	PlayerOnScreen playerOnScreen;
+	
+	
 	PlayerController playerController;
 
+	
+	ArrayList <EnemyController>enemiesController = new ArrayList<EnemyController>();
+	
+	
+	CombatManager combatManager = CombatManager.getInstance();
+	
 	
 	
 	public Game(String chosenCharacter) {
@@ -37,6 +47,7 @@ public class Game extends ApplicationAdapter implements InputProcessor {
 		
 		createPlayer();
 		createEnemies();
+		combatManager.configureCombatManager(playerController,enemiesController);
 		
 
 	}
@@ -53,8 +64,11 @@ public class Game extends ApplicationAdapter implements InputProcessor {
 		ScreenUtils.clear(0, 0, 0, 1);
 		batch.begin();
 		batch.draw(background, x, y);
-		playerOnScreen.draw(batch);
-
+		
+		drawPlayer();
+		drawEnemies();
+		combatManagement();
+		
 
 		batch.end();
 	}
@@ -67,18 +81,34 @@ public class Game extends ApplicationAdapter implements InputProcessor {
 		batch.dispose();
 
 	}
+	
+	public void combatManagement() {
+		combatManager.checkCombat();
+	}
 
+	
+	public void drawPlayer() {
+		playerController.getPlayerOnScreen().draw();
+	}
+	
+	public void drawEnemies() {
+		for(EnemyController enemyController:enemiesController) {
+			enemyController.getEnemyOnScreen().draw();
+		}
+		
+	}
+		
 
 	public void createPlayer() {
-		playerController = new PlayerController();
-		playerOnScreen = new PlayerOnScreen(batch);
-		
-		playerController.setPlayerOnScreen(playerOnScreen);
-		playerController.chooseCharacter(chosenCharacter);
+		playerController = new PlayerController(batch,chosenCharacter);
 	}
 	
 	
 	public void createEnemies() {
+		enemiesController.add(new EnemyController(batch,"enemy01_image.png",new Vector2(1300,500)));
+		enemiesController.add(new EnemyController(batch,"enemy01_image.png",new Vector2(1300,0)));
+		
+		
 		
 	}
 	

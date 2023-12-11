@@ -16,6 +16,7 @@ public class PlayerOnScreen extends ElementOnScreen {
 	private float playerSpeed = 200;
 	private boolean playerStop = false;
 	SpriteBatch batch;
+	private boolean isFlipped=false;
 
 
 
@@ -31,7 +32,7 @@ public class PlayerOnScreen extends ElementOnScreen {
 
 	}
 
-	public void draw(SpriteBatch batch) {
+	public void draw() {
 		Update();
 		sprite.setPosition(position.x, position.y);
 		sprite.draw(batch);
@@ -39,10 +40,10 @@ public class PlayerOnScreen extends ElementOnScreen {
 
 	
 	public void playerMovement() {
-		float FIXED_DELTA_TIME = 1/20.0f;
-		float speed = playerSpeed * FIXED_DELTA_TIME;
-		//float deltaTime = Gdx.graphics.getDeltaTime();
-		//float speed = playerSpeed * deltaTime;
+		//float FIXED_DELTA_TIME = 1/20.0f;
+		//float speed = playerSpeed * FIXED_DELTA_TIME;
+		float deltaTime = Gdx.graphics.getDeltaTime();
+		float speed = playerSpeed * deltaTime;
 
 		if (Gdx.input.isKeyPressed(Keys.UP)) {
 			position.y += speed;
@@ -52,12 +53,27 @@ public class PlayerOnScreen extends ElementOnScreen {
 		}
 		if (Gdx.input.isKeyPressed(Keys.LEFT)) {
 			position.x -= speed;
+			turnLeft();
 		}
 		if (Gdx.input.isKeyPressed(Keys.RIGHT)) {
 			position.x += speed;
+			turnRight();
 		}
 
 		checkFieldLimits();
+	}
+	public void turnLeft() {
+		if(!isFlipped) {
+			sprite.flip(true, false);
+			isFlipped=true;
+		}
+	}
+	
+	public void turnRight() {
+		if(isFlipped) {
+			sprite.flip(true, false);
+			isFlipped=false;
+		}
 	}
 
 	public void checkFieldLimits() {
