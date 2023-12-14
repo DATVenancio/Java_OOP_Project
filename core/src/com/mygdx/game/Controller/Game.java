@@ -17,6 +17,9 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 public class Game extends ApplicationAdapter implements InputProcessor {
 	SpriteBatch batch;
 	Texture background;
+	Texture accueil;
+	Texture bag;
+	Texture caracteristic;
 	String chosenCharacter;
 	
 	
@@ -43,6 +46,9 @@ public class Game extends ApplicationAdapter implements InputProcessor {
 
 		batch = new SpriteBatch();
 		background = new Texture("background.png");
+		accueil = new Texture("accueil.png");
+		bag = new Texture("bag.png");
+		caracteristic = new Texture("caracteristic.png");
 		
 		
 		createPlayer();
@@ -63,8 +69,12 @@ public class Game extends ApplicationAdapter implements InputProcessor {
 		
 		ScreenUtils.clear(0, 0, 0, 1);
 		batch.begin();
+
 		batch.draw(background, x, y);
-		
+		batch.draw(accueil, 20, 860);
+		batch.draw(bag,1600,800);
+		batch.draw(caracteristic,1750,10);
+
 		drawPlayer();
 		drawEnemies();
 		combatManagement();
@@ -105,11 +115,11 @@ public class Game extends ApplicationAdapter implements InputProcessor {
 	
 	
 	public void createEnemies() {
-		enemiesController.add(new EnemyController(batch,"enemy01_image.png",new Vector2(1300,500)));
-		enemiesController.add(new EnemyController(batch,"enemy01_image.png",new Vector2(1300,0)));
-		
-		
-		
+		enemiesController.add(new EnemyController(batch,"geant_nain.png",new Vector2(1100,800)));
+		enemiesController.add(new EnemyController(batch,"griffon_harpie.png",new Vector2(1300,100)));
+		enemiesController.add(new EnemyController(batch,"kraken_sirene.png",new Vector2(600,100)));
+		enemiesController.add(new EnemyController(batch,"loup_elfe.png",new Vector2(600,800)));
+		enemiesController.add(new EnemyController(batch,"serpent_dragon.png",new Vector2(400,420)));
 	}
 	
 	
