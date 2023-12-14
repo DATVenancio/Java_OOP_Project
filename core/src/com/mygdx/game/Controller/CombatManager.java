@@ -33,7 +33,7 @@ public class CombatManager {
 	}
 	public void checkCombat() {
 		batch = new SpriteBatch();
-		battle_1 = new Texture("battle_geant.png");
+		battle_1 = new Texture("../assets/battle_geant.png");
 
 		for(EnemyController enemyController:enemiesController) {
 			if(playerController.getPlayerOnScreen().getSprite().getBoundingRectangle().overlaps(enemyController.getEnemyOnScreen().getSprite().getBoundingRectangle())) {
