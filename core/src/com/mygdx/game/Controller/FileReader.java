@@ -11,10 +11,6 @@ import com.badlogic.gdx.graphics.Texture;
 
 public class FileReader {
 
-
-
-	
-
 	public Map<String,Object> readCharacterInfo(String choosenCharacter){
 		
 		

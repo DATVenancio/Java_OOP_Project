@@ -50,11 +50,9 @@ public class Game extends ApplicationAdapter implements InputProcessor {
 		bag = new Texture("bag.png");
 		caracteristic = new Texture("caracteristic.png");
 		
-		
 		createPlayer();
 		createEnemies();
 		combatManager.configureCombatManager(playerController,enemiesController);
-		
 
 	}
 
@@ -83,13 +81,13 @@ public class Game extends ApplicationAdapter implements InputProcessor {
 		batch.end();
 	}
 
-	
-	
-	
 	@Override
 	public void dispose () {
 		batch.dispose();
-
+		background.dispose();
+		accueil.dispose();
+		bag.dispose();
+		caracteristic.dispose();
 	}
 	
 	public void combatManagement() {
@@ -107,12 +105,10 @@ public class Game extends ApplicationAdapter implements InputProcessor {
 		}
 		
 	}
-		
 
 	public void createPlayer() {
 		playerController = new PlayerController(batch,chosenCharacter);
 	}
-	
 	
 	public void createEnemies() {
 		enemiesController.add(new EnemyController(batch,"geant_nain.png",new Vector2(1100,800)));
@@ -121,32 +117,7 @@ public class Game extends ApplicationAdapter implements InputProcessor {
 		enemiesController.add(new EnemyController(batch,"loup_elfe.png",new Vector2(600,800)));
 		enemiesController.add(new EnemyController(batch,"serpent_dragon.png",new Vector2(400,420)));
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	@Override
 	public boolean keyDown(int keycode) {
 		handleInput(keycode, true);

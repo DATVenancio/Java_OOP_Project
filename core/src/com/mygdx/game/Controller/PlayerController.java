@@ -4,15 +4,18 @@ package com.mygdx.game.Controller;
 
 import java.util.Map;
 
+import com.badlogic.gdx.ApplicationAdapter;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.Model.Player;
 import com.mygdx.game.View.PlayerOnScreen;
 
-public class PlayerController {
+public class PlayerController extends ApplicationAdapter implements InputProcessor {
 	private PlayerOnScreen playerOnScreen;
 	private Player player;
+	private Texture characterImage;
 
 	public PlayerController(SpriteBatch batch,String chosenCharacter) {
 		playerOnScreen = new PlayerOnScreen(batch);
@@ -26,10 +29,9 @@ public class PlayerController {
 		
 		
 	}
-	
-	
+
 	public void choosePlayerSprite(String chosenCharacter) {
-		Texture characterImage = new Texture(chosenCharacter+".png");
+		characterImage = new Texture(chosenCharacter+".png");
 		playerOnScreen.setSprite(new Sprite(characterImage));
 	}
 	
@@ -47,4 +49,53 @@ public class PlayerController {
 		this.playerOnScreen = playerOnScreen;
 	}
 
+	public void dispose() {
+		// pour la libération mémoire
+		characterImage.dispose();
+	}
+
+	@Override
+	public boolean keyDown(int keycode) {
+		return false;
+	}
+
+	@Override
+	public boolean keyUp(int keycode) {
+		return false;
+	}
+
+	@Override
+	public boolean keyTyped(char character) {
+		return false;
+	}
+
+	@Override
+	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+		return false;
+	}
+
+	@Override
+	public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+		return false;
+	}
+
+	@Override
+	public boolean touchCancelled(int screenX, int screenY, int pointer, int button) {
+		return false;
+	}
+
+	@Override
+	public boolean touchDragged(int screenX, int screenY, int pointer) {
+		return false;
+	}
+
+	@Override
+	public boolean mouseMoved(int screenX, int screenY) {
+		return false;
+	}
+
+	@Override
+	public boolean scrolled(float amountX, float amountY) {
+		return false;
+	}
 }
