@@ -1,9 +1,24 @@
-# Java_OOP_Project
+<p style="text-align:center">
+  <img src="images/banniere.png">
+</p>
+
+# **Projet POO Java**
+# Création d'un jeu Donjon & Dragon
+
+## Sommaire
+
+<a></a>
+
+
+## Description
+
+<p>Ce projet est pasé sur la librairie  Libgdx. C'est un jeu de rôle type Donjon & Dragon en Java. Il nous permet de mettre en oeuvre nos capacitées en </p>
 <<<<<<< HEAD
-READ to use in our project essai
+
+Ce READ to use in our project essai
 =======
 READ to use in our project test ines
->>>>>>> 5d77ed1 (ines)
-git config pull.rebase true
+>>>>>>> 5d77ed1
 
-test ines apres fusion
+
+git config pull.rebase true
