@@ -184,8 +184,6 @@ public class Menu_alternative {
         game.dispose();
     }
 
-    
-    
     public void configurePages() {
 
         // On vient définir les textures-images pour les menus
@@ -212,8 +210,7 @@ public class Menu_alternative {
         Histoire1 = new Texture("histoire1.jpg");
         Histoire2 = new Texture("histoire2.jpg");
         Histoire3 = new Texture("histoire3.jpg");
-        
-        
+
         pages.put(1, menu3Texture);
 		pages.put(2, regleTexture);
 		pages.put(4, choixForce);
@@ -465,7 +462,5 @@ public class Menu_alternative {
             }
         });
     }
-
-
 
 }

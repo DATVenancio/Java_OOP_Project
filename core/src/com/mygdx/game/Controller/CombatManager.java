@@ -2,14 +2,16 @@
 
 import java.util.ArrayList;
 
+import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.Model.Dice;
 import com.mygdx.game.Model.Enemy;
 import com.mygdx.game.Model.Player;
 
-public class CombatManager {
+public class CombatManager extends ApplicationAdapter implements InputProcessor {
 	SpriteBatch batch;
 	Texture battle_1;
 	private static CombatManager instance;
@@ -47,8 +49,12 @@ public class CombatManager {
 				
 		}
 	}
-	
-	
+
+	public void dispose() {
+		// pour la libération mémoire
+		batch.dispose();
+		battle_1.dispose();
+	}
 	
 	
 	public boolean createTurn(Dice dice,Enemy enemy) {
@@ -87,7 +93,49 @@ public class CombatManager {
 		this.playerController = playerController;
 	}
 
-	
-	
-	
+
+	@Override
+	public boolean keyDown(int keycode) {
+		return false;
+	}
+
+	@Override
+	public boolean keyUp(int keycode) {
+		return false;
+	}
+
+	@Override
+	public boolean keyTyped(char character) {
+		return false;
+	}
+
+	@Override
+	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+		return false;
+	}
+
+	@Override
+	public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+		return false;
+	}
+
+	@Override
+	public boolean touchCancelled(int screenX, int screenY, int pointer, int button) {
+		return false;
+	}
+
+	@Override
+	public boolean touchDragged(int screenX, int screenY, int pointer) {
+		return false;
+	}
+
+	@Override
+	public boolean mouseMoved(int screenX, int screenY) {
+		return false;
+	}
+
+	@Override
+	public boolean scrolled(float amountX, float amountY) {
+		return false;
+	}
 }
