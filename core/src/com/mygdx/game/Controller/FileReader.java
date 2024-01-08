@@ -21,7 +21,7 @@ public class FileReader {
 		Map<String,Object> characterInfos = new HashMap<String,Object>();
 		
 		try {
-			Scanner scanner = new Scanner (new File("./assets/charactersList.txt"));
+			Scanner scanner = new Scanner (new File("../assets/charactersList.txt"));
 			
 			while(scanner.hasNextLine()) {
 				String[] lineParts = scanner.nextLine().split(",");

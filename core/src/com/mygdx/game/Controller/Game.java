@@ -1,5 +1,6 @@
 package com.mygdx.game.Controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import com.badlogic.gdx.ApplicationAdapter;
@@ -46,9 +47,10 @@ public class Game extends ApplicationAdapter implements InputProcessor {
 
 		batch = new SpriteBatch();
 		background = new Texture("background.png");
-		accueil = new Texture("accueil.png");
-		bag = new Texture("bag.png");
-		caracteristic = new Texture("caracteristic.png");
+		
+		accueil = new Texture("../assets/accueil.png");
+		bag = new Texture("../assets/bag.png");
+		caracteristic = new Texture("../assets/caracteristic.png");
 		
 		
 		createPlayer();
@@ -72,8 +74,8 @@ public class Game extends ApplicationAdapter implements InputProcessor {
 
 		batch.draw(background, x, y);
 		batch.draw(accueil, 20, 860);
-		batch.draw(bag,1600,800);
-		batch.draw(caracteristic,1750,10);
+		batch.draw(bag,0,500);
+		batch.draw(caracteristic,0,0);
 
 		drawPlayer();
 		drawEnemies();
@@ -115,11 +117,11 @@ public class Game extends ApplicationAdapter implements InputProcessor {
 	
 	
 	public void createEnemies() {
-		enemiesController.add(new EnemyController(batch,"geant_nain.png",new Vector2(1100,800)));
-		enemiesController.add(new EnemyController(batch,"griffon_harpie.png",new Vector2(1300,100)));
-		enemiesController.add(new EnemyController(batch,"kraken_sirene.png",new Vector2(600,100)));
-		enemiesController.add(new EnemyController(batch,"loup_elfe.png",new Vector2(600,800)));
-		enemiesController.add(new EnemyController(batch,"serpent_dragon.png",new Vector2(400,420)));
+		enemiesController.add(new EnemyController(batch,"../assets/geant_nain.png",new Vector2(1100,800)));
+		enemiesController.add(new EnemyController(batch,"../assets/griffon_harpie.png",new Vector2(1300,100)));
+		enemiesController.add(new EnemyController(batch,"../assets/kraken_sirene.png",new Vector2(600,100)));
+		enemiesController.add(new EnemyController(batch,"../assets/loup_elfe.png",new Vector2(600,800)));
+		enemiesController.add(new EnemyController(batch,"../assets/serpent_dragon.png",new Vector2(400,420)));
 	}
 	
 	
