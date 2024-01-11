@@ -1,13 +1,18 @@
 package com.mygdx.game.Model;
 
 public abstract class Item {
+	private String type;
 	private float weight;
-	private String name;
+	protected String name;
 	private String description;
 
 	public abstract void actionWhenAdded(Player player);
 	public abstract void actionWhenRemoved(Player player);
 	
+	
+	public Item(String name) {
+		this.name = name;
+	}
 	
 	
 	public void increaseBagTotalWeigth(Bag bag) {

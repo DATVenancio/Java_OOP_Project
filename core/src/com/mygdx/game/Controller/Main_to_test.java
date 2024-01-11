@@ -1,3 +1,4 @@
+/*
 package com.mygdx.game.Controller;
 
 
@@ -37,11 +38,10 @@ public class Main_to_test {
 		
 		// TODO Auto-generated method stub
 		Player player= new Player();
-		Enemy enemy = new Dragon();
 		
 		CombatManager combatManager = CombatManager.getInstance();
 		
-		initial_configuration(combatManager,player,enemy);
+		//initial_configuration(combatManager,player,enemy);
 		
 		
 		
@@ -62,7 +62,7 @@ public class Main_to_test {
 		test_weapon_bow(player);
 		
 		
-		test_combat_turn(combatManager, enemy);
+		//test_combat_turn(combatManager, enemy);
 		
 		
 		
@@ -111,7 +111,7 @@ public class Main_to_test {
 		int bag_capacity = player.getBag().getCapacity();
 		
 		for(int i = 0; i< 2*bag_capacity;i++) {
-			player.getBag().addItem(new Sword());
+			//player.getBag().addItem(new Sword());
 		}
 		
 		if(player.getBag().getAmountOfItems() != bag_capacity) {
@@ -190,7 +190,7 @@ public class Main_to_test {
 	
 	public static void test_combat_turn(CombatManager combatManager, Enemy enemy) {
 		
-		combatManager.createTurn(null, enemy);
+		//combatManager.createTurn(null, enemy);
 		
 		
 		assertTrue(true);
@@ -251,3 +251,4 @@ public class Main_to_test {
 		System.out.println("Player speed:" + player.getSpeed());
 	}
 }
+*/

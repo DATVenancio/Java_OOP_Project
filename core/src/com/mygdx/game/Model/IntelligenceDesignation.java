@@ -7,8 +7,6 @@ public class IntelligenceDesignation implements Designation {
 	@Override
 	public void changeAttributes(Player player) {
 		// TODO Auto-generated method stub
-		player.setStregth(2);
-		player.setIntelligence(5);
-		player.setSpeed(2);
+
 	}
 }

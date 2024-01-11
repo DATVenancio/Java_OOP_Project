@@ -2,6 +2,11 @@ package com.mygdx.game.Model;
 
 public class Bow extends Weapon {
 
+	public Bow(String name, int power) {
+		super(name,power);
+		// TODO Auto-generated constructor stub
+	}
+
 	@Override
 	public void increaseAtribute(Player player) {
 		// TODO Auto-generated method stub

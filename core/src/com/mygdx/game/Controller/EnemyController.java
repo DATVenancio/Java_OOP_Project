@@ -1,5 +1,7 @@
 package com.mygdx.game.Controller;
 
+import java.util.Map;
+
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Texture;
@@ -13,9 +15,23 @@ public class EnemyController extends ApplicationAdapter implements InputProcesso
 	private EnemyOnScreen enemyOnScreen;
 	private Texture enemyTexture;
 	
-	public EnemyController(SpriteBatch batch,String enemyString,Vector2 position) {
-		enemyTexture = new Texture(enemyString);
+	public EnemyController(SpriteBatch batch,Map<String,Object> enemyInfos) {
+		createEnemyOnScreen(batch,enemyInfos);
+		createEnemy(enemyInfos);
+		
+	}
+	
+	
+	private void createEnemyOnScreen(SpriteBatch batch, Map<String,Object> enemyInfos) {
+		Vector2 position = new Vector2(Integer.valueOf((String) enemyInfos.get("positionX")),Integer.valueOf((String) enemyInfos.get("positionY")));
+		enemyTexture = new Texture("../assets/"+enemyInfos.get("name")+".png");
 		enemyOnScreen = new EnemyOnScreen(batch,enemyTexture, position);
+	}
+	private void createEnemy(Map<String,Object> enemyInfos) {
+		String name = (String) enemyInfos.get("name");
+		int life = Integer.valueOf((String)enemyInfos.get("life"));
+		int attack = Integer.valueOf((String)enemyInfos.get("attack"));
+		enemy = new Enemy(name,life,attack);
 	}
 
 	public EnemyOnScreen getEnemyOnScreen() {
@@ -25,11 +41,25 @@ public class EnemyController extends ApplicationAdapter implements InputProcesso
 	public void setEnemyOnScreen(EnemyOnScreen enemyOnScreen) {
 		this.enemyOnScreen = enemyOnScreen;
 	}
+	
+	public Enemy getEnemy() {
+		return enemy;
+	}
+
+	public void setEnemy(Enemy enemy) {
+		this.enemy = enemy;
+	}
 
 	public void dispose () {
 		enemyOnScreen.dispose();
 		enemyTexture.dispose();
 	}
+	
+	
+	
+	
+	
+	
 
 	@Override
 	public boolean keyDown(int keycode) {

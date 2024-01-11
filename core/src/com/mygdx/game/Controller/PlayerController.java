@@ -19,15 +19,12 @@ public class PlayerController extends ApplicationAdapter implements InputProcess
 
 	public PlayerController(SpriteBatch batch,String chosenCharacter) {
 		playerOnScreen = new PlayerOnScreen(batch);
-		chooseCharacter(chosenCharacter);
+		createPlayer(chosenCharacter);
 	}
 	
-	public void chooseCharacter(String chosenCharacter) {
-		
+	public void createPlayer(String chosenCharacter) {
 		choosePlayerSprite(chosenCharacter);
 		choosePlayerAttributes(chosenCharacter);
-		
-		
 	}
 
 	public void choosePlayerSprite(String chosenCharacter) {
@@ -38,8 +35,20 @@ public class PlayerController extends ApplicationAdapter implements InputProcess
 	public void choosePlayerAttributes(String chosenCharacter){
 		FileReader reader = new FileReader();
 		Map<String,Object> characterInfo  = reader.readCharacterInfo(chosenCharacter);
+
 		this.player = new Player(characterInfo);
 	}
+
+	
+	
+	public void freezePlayer() {
+		playerOnScreen.setPlayerFreeze(true);
+	}
+	public void unfreezePlayer() {
+		playerOnScreen.setPlayerFreeze(false);
+	}
+	
+	
 	
 	public PlayerOnScreen getPlayerOnScreen() {
 		return playerOnScreen;
@@ -47,6 +56,15 @@ public class PlayerController extends ApplicationAdapter implements InputProcess
 
 	public void setPlayerOnScreen(PlayerOnScreen playerOnScreen) {
 		this.playerOnScreen = playerOnScreen;
+	}
+	
+	
+	public Player getPlayer() {
+		return player;
+	}
+
+	public void setPlayer(Player player) {
+		this.player = player;
 	}
 
 	public void dispose() {

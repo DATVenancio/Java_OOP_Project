@@ -1,5 +1,7 @@
 package com.mygdx.game.View;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Color;
@@ -8,15 +10,17 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
+import com.mygdx.game.Model.Item;
 import com.mygdx.game.Model.Player;
 
 public class PlayerOnScreen extends ElementOnScreen {
 	
 	
 	private float playerSpeed = 200;
-	private boolean playerStop = false;
-	SpriteBatch batch;
+	private boolean playerFreeze = false;
+	private SpriteBatch batch;
 	private boolean isFlipped=false;
+	private BitmapFont font = new BitmapFont();
 
 
 
@@ -27,8 +31,9 @@ public class PlayerOnScreen extends ElementOnScreen {
 	}
 
 	public void Update() {
-
-		playerMovement();
+		
+		
+		if(!playerFreeze) playerMovement();
 
 	}
 
@@ -37,11 +42,14 @@ public class PlayerOnScreen extends ElementOnScreen {
 		sprite.setPosition(position.x, position.y);
 		sprite.draw(batch);
 	}
+	public void dispose() {
+		
+		batch.dispose();
+	}
 
 	
 	public void playerMovement() {
-		//float FIXED_DELTA_TIME = 1/20.0f;
-		//float speed = playerSpeed * FIXED_DELTA_TIME;
+
 		float deltaTime = Gdx.graphics.getDeltaTime();
 		float speed = playerSpeed * deltaTime;
 
@@ -75,7 +83,8 @@ public class PlayerOnScreen extends ElementOnScreen {
 			isFlipped=false;
 		}
 	}
-
+	
+	
 	public void checkFieldLimits() {
 		checkLeftLimit();
 		checkRightLimit();
@@ -103,14 +112,50 @@ public class PlayerOnScreen extends ElementOnScreen {
 		}
 	}
 
+	public void drawCaracteristics(Player player) {
+		font.draw(batch, String.valueOf(player.getStregth()), 105, 495);
+
+		font.draw(batch, String.valueOf(player.getIntelligence()), 105, 395);
+		font.draw(batch, String.valueOf(player.getWisdom()), 105, 295);
+		font.draw(batch, String.valueOf(player.getRuse()), 105, 195);
+		font.draw(batch, String.valueOf(player.getStregth()), 105, 95);
+		
+		font.draw(batch, String.valueOf(player.getLife()), 1500,900);
+		font.draw(batch, String.valueOf(player.getAttackBonus()), 1700,900);
+		
+	}
+	public void drawItemsNames(Player player) {
+		ArrayList<Item> items = player.getBag().getItems();
+		if(items.size()>0) {
+			font.setColor(Color.BLACK);
+			int initialY = 750;
+			for (Item item:items) {
+				font.draw(batch,item.getName(), 45, initialY);
+				initialY-=20;
+			}
+			
+			font.setColor(Color.WHITE);
+		}
+		
+		
 
 
-	public boolean isPlayerStop() {
-		return playerStop;
+		
+		
+		font.draw(batch, String.valueOf(player.getLife()), 1500,900);
+		font.draw(batch, String.valueOf(player.getAttackBonus()), 1700,900);
+		
 	}
 
-	public void setPlayerStop(boolean playerStop) {
-		this.playerStop = playerStop;
+
+	public boolean isPlayerFreeze() {
+		return playerFreeze;
 	}
 
+	public void setPlayerFreeze(boolean playerStop) {
+		this.playerFreeze = playerStop;
+	}
+
+	
+	
 }

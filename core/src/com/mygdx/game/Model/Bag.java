@@ -10,6 +10,13 @@ public class Bag {
 	private Player player;
 	private ArrayList<Item> items = new ArrayList<Item>();
 	
+	public Bag(Player player) {
+		this.capacity=5;
+		this.amountOfItems=0;
+		this.totalWeight=0;
+		this.player=player;
+	}
+	
 
 	
 	

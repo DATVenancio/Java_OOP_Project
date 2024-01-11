@@ -1,7 +1,7 @@
-perso,name,strenght,intelligence,speed,atk bonus,life,designation
-perso_intelligencehomme,Cedrik,12,45,11,5,30,intelligence
-perso_intelligencefemme,Elyse,12,45,11,5,30,intelligence
-perso_forcehomme,Bram,45,12,13,5,30,strength
-perso_forcefemme,Elara,45,12,13,5,30,strength
-perso_dexteritehomme,Tarak,10,14,45,5,30,dexterity
-perso_dexteritefemme,Lyra,10,14,45,5,30,dexterity
+perso,name,strenght,intelligence,wisdom,ruse,speed,atk bonus,life,designation
+perso_intelligencehomme,Cedrik,12,45,14,18,11,5,30,intelligence
+perso_intelligencefemme,Elyse,12,45,14,18,11,5,30,intelligence
+perso_forcehomme,Bram,45,12,10,20,13,5,30,strength
+perso_forcefemme,Elara,45,12,10,20,13,5,30,strength
+perso_dexteritehomme,Tarak,10,14,20,11,45,5,30,dexterity
+perso_dexteritefemme,Lyra,10,14,20,11,45,5,30,dexterity

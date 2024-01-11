@@ -8,6 +8,13 @@ public class ElementOnScreen extends ApplicationAdapter{
 	public Vector2 position;
 	public Sprite sprite;
 
+	public boolean isCollidingWith(ElementOnScreen elementOnScreen) {
+		if(sprite.getBoundingRectangle().overlaps(elementOnScreen.getSprite().getBoundingRectangle())) {
+			return true;
+		}
+		return false;
+	}
+	
 	public Vector2 getPosition() {
 		return position;
 	}

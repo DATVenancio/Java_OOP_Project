@@ -1,11 +1,18 @@
 package com.mygdx.game.Model;
 
-public abstract class Enemy {
+public class Enemy {
 	private String name;
 	private int life;
 	private int attack;
 	private boolean alive;
 	
+	
+	public Enemy(String name, int life, int attack) {
+		this.name=name;
+		this.life=life;
+		this.attack=attack;
+		this.alive=true;
+	}
 	
 	//gets and sets
 	public String getName() {
@@ -18,7 +25,13 @@ public abstract class Enemy {
 		return life;
 	}
 	public void setLife(int life) {
-		this.life = life;
+		if(life>0) {
+			this.life = life;
+		}else {
+			this.life=0;
+			this.alive=false;
+		}
+		
 	}
 	public int getAttack() {
 		return attack;

@@ -9,8 +9,9 @@ public class Player {
 	
 	private int stregth;
 	private int intelligence;
+	private int wisdom;
+	private int ruse;
 	private int speed;
-	
 	private int attackBonus;
 	private int life;
 	
@@ -26,12 +27,15 @@ public class Player {
 		this.name = characterInfo.get("name").toString();
 		this.stregth = Integer.parseInt( characterInfo.get("strength").toString());
 		this.intelligence = Integer.parseInt( characterInfo.get("intelligence").toString());
+		this.wisdom = Integer.parseInt( characterInfo.get("wisdom").toString());
+		this.ruse = Integer.parseInt( characterInfo.get("ruse").toString());
 		this.speed = Integer.parseInt(  characterInfo.get("speed").toString());
 		this.attackBonus = Integer.parseInt(characterInfo.get("attackBonus").toString());
 		this.life = Integer.parseInt(  characterInfo.get("life").toString());
 		
 		chooseDesignation(characterInfo.get("designation").toString());
-		this.bag = new Bag();
+		this.bag = new Bag(this);
+
 	}
 	
 	
@@ -62,7 +66,12 @@ public class Player {
 		return life;
 	}
 	public void setLife(int life) {
-		this.life = life;
+		if(life>0) {
+			this.life = life;
+		}
+		else {
+			this.life=0;
+		}
 	}
 	
 	public String getName() {
@@ -119,6 +128,25 @@ public class Player {
 	}
 	public void setDesignation(Designation designation) {
 		this.designation = designation;
+		
+		
+	
+	}
+
+	public int getWisdom() {
+		return wisdom;
+	}
+
+	public void setWisdom(int wisdom) {
+		this.wisdom = wisdom;
+	}
+
+	public int getRuse() {
+		return ruse;
+	}
+
+	public void setRuse(int ruse) {
+		this.ruse = ruse;
 	}
 	
 	

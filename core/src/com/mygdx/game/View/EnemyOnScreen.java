@@ -19,10 +19,11 @@ public class EnemyOnScreen extends ElementOnScreen {
 
 
 	public void draw() {
-
 		sprite.setPosition(position.x, position.y);
 		sprite.draw(batch);
 	}
+	
+
 
 
 
