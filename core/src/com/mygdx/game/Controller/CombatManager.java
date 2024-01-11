@@ -5,19 +5,34 @@ import java.util.ArrayList;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.Model.Dice;
 import com.mygdx.game.Model.Enemy;
 import com.mygdx.game.Model.Player;
+import com.mygdx.game.View.CombatManagerOnScreen;
 
 public class CombatManager extends ApplicationAdapter implements InputProcessor {
-	SpriteBatch batch;
-	Texture battle_1;
+	
 	private static CombatManager instance;
+	private CombatManagerOnScreen combatManagerOnScreen = new CombatManagerOnScreen();
 	
 	private PlayerController playerController;
+	private EnemyController currentEnemy;
+	
+	
+	
 	private ArrayList<EnemyController> enemiesController;
+	private boolean inCombat=false;
+	private Dice dice6Sides = new Dice(6);
+	private int diceResult=0;
+	private boolean enemyHasDied = false;
+	private boolean playerHasDied = false;
+
+	
+
 	
 	private CombatManager() {};
 	
@@ -28,60 +43,132 @@ public class CombatManager extends ApplicationAdapter implements InputProcessor 
 		return instance;
 	}
 
-	public void configureCombatManager(PlayerController playerController, ArrayList<EnemyController> enemiesController)
+	public void configureCombatManager(SpriteBatch batch,PlayerController playerController, ArrayList<EnemyController> enemiesController)
 	{
+		this.combatManagerOnScreen.setBatch(batch);
 		this.playerController=playerController;
 		this.enemiesController=enemiesController;
 	}
 	public void checkCombat() {
-		batch = new SpriteBatch();
-		battle_1 = new Texture("../assets/battle_geant.png");
-
-		for(EnemyController enemyController:enemiesController) {
-			if(playerController.getPlayerOnScreen().getSprite().getBoundingRectangle().overlaps(enemyController.getEnemyOnScreen().getSprite().getBoundingRectangle())) {
-				batch.begin();
-
-				batch.draw(battle_1, 800, 200);
-
-				batch.end();
-				System.out.println("colide!");
+		if(!playerHasDied()) {
+			checkEnemyHasDied();
+			checkEnemyCollision();
+			if(inCombat) {
+				checkDiceRoll();
+				checkCurrentEnemyLifeState();
+				checkPlayerLifeState();
 			}
-				
+		}
+		
+	}
+	public boolean playerHasDied() {
+		if(playerHasDied) {
+			waitInMilisec(3000);
+			combatManagerOnScreen.showLoseGameImage();
+			Game.endGame();
+			return true;
+		}
+		return false;
+	}
+	public void checkEnemyHasDied() {
+		if(enemyHasDied) {
+			waitInMilisec(3000);
+			setInitialCombatConfiguration();
+			playerController.unfreezePlayer();
+			enemyHasDied=false;
+		}
+	}
+	public void checkEnemyCollision() {
+		for(EnemyController enemyController:enemiesController) {
+			if(combatManagerOnScreen.playerColidesWithEnemy(playerController.getPlayerOnScreen(),enemyController.getEnemyOnScreen())) {
+				combatManagerOnScreen.showBattleImage(playerController.getPlayer(),enemyController.getEnemy());
+				playerController.freezePlayer();
+				inCombat=true;
+				currentEnemy=enemyController;
+			}		
 		}
 	}
 
+	public void checkCurrentEnemyLifeState() {
+		if(currentEnemy.getEnemy().getLife()<=0) {
+			reloadBattleImage();
+			killCurrentEnemy();
+		}
+	}
+	
+	public void checkPlayerLifeState() {
+		if(playerController.getPlayer().getLife()<=0) {
+			reloadBattleImage();
+			playerHasDied=true;
+			
+			
+		}
+	}
+	
+	public void reloadBattleImage() {
+		combatManagerOnScreen.showBattleImage(playerController.getPlayer(),currentEnemy.getEnemy());
+		
+	}
+	public void killCurrentEnemy() {
+		enemiesController.remove(currentEnemy);
+		currentEnemy.dispose();
+		enemyHasDied=true;
+		
+	}
+
+	public void setInitialCombatConfiguration() {
+		combatManagerOnScreen.restartDiceResult();
+		inCombat=false;
+	}
 	public void dispose() {
 		// pour la libération mémoire
-		batch.dispose();
-		battle_1.dispose();
+		
 	}
 	
-	
-	public boolean createTurn(Dice dice,Enemy enemy) {
-
-		/*
-		while(enemyIsAlive(enemy)) {
-			int playerAttack = dice.rollDice()+player.getAttackBonus();
-			int enemyLife = enemy.getLife();
-			
-			if(playerAttack>=enemyLife) {
-				killEnemy(enemy);
-			}else {
-				hurtEnemy(enemy);
-				hurtPlayer(enemy.getAttack());
-			}
-			
-			if(playerIsDead()) {
-				return false;
-			}
+	public void checkDiceRoll() {
+		int diceResult=0;
+		if(Gdx.input.isKeyJustPressed(Keys.SPACE)) {
+			diceResult = dice6Sides.rollDice();
+			combatManagerOnScreen.showDiceResult(diceResult);
+			createTurn(diceResult);
 		}
+
+	}
+	
+	
+	public boolean createTurn(int diceResult) {
+		
+		hurtEnemy(diceResult);
+		if(currentEnemy.getEnemy().isAlive()) {
+			hurtPlayer();
+		}
+		
 		return true;
-		*/
-		return true;
+	}
+	
+	public void hurtEnemy(int diceResult) {
+		int enemyLife = currentEnemy.getEnemy().getLife();
+		int playerAttack = playerController.getPlayer().getAttackBonus() + diceResult;
+		currentEnemy.getEnemy().setLife(enemyLife-playerAttack);
+		
+	}
+	public void hurtPlayer() {
+		int playerLife = playerController.getPlayer().getLife();
+		int enemyAttack = currentEnemy.getEnemy().getAttack();
+		playerController.getPlayer().setLife(playerLife-enemyAttack);
 	}
 
 	
 
+	public void waitInMilisec(int milisec) {
+		try {
+            Thread.sleep(milisec);
+        } catch (InterruptedException e) {
+
+            e.printStackTrace();
+        }
+		
+	}
 	
 	//gets and sets
 	

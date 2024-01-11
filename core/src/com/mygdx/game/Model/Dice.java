@@ -13,12 +13,7 @@ public class Dice {
 	
 	public int rollDice() {
 		Random rand = new Random();
-
-		System.out.print("Roll the dice: ");
-		Scanner scanner = new Scanner(System.in);
-		scanner.next();
 		int result =rand.nextInt(amountOfSides)+1;
-		System.out.println(result);
 		return result;
 	}
 	

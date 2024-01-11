@@ -7,8 +7,6 @@ public class DexterityDesignation implements Designation {
 	@Override
 	public void changeAttributes(Player player) {
 		// TODO Auto-generated method stub
-		player.setStregth(2);
-		player.setIntelligence(2);
-		player.setSpeed(5);
+		
 	}
 }
