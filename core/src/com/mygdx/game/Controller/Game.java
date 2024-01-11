@@ -81,15 +81,6 @@ public class Game extends ApplicationAdapter implements InputProcessor {
 		batch.end();
 	}
 
-	@Override
-	public void dispose () {
-		batch.dispose();
-		background.dispose();
-		accueil.dispose();
-		bag.dispose();
-		caracteristic.dispose();
-	}
-	
 	public void combatManagement() {
 		combatManager.checkCombat();
 	}
@@ -116,6 +107,34 @@ public class Game extends ApplicationAdapter implements InputProcessor {
 		enemiesController.add(new EnemyController(batch,"kraken_sirene.png",new Vector2(600,100)));
 		enemiesController.add(new EnemyController(batch,"loup_elfe.png",new Vector2(600,800)));
 		enemiesController.add(new EnemyController(batch,"serpent_dragon.png",new Vector2(400,420)));
+	}
+
+	@Override
+	public void dispose () {
+		if (batch != null) {
+			batch.dispose();
+			batch = null; // Optionnel : marquer comme null après libération
+		}
+
+		if (background != null) {
+			background.dispose();
+			background = null; // Optionnel : marquer comme null après libération
+		}
+
+		if (accueil != null) {
+			accueil.dispose();
+			accueil = null; // Optionnel : marquer comme null après libération
+		}
+
+		if (bag != null) {
+			bag.dispose();
+			bag = null; // Optionnel : marquer comme null après libération
+		}
+
+		if (caracteristic != null) {
+			caracteristic.dispose();
+			caracteristic = null; // Optionnel : marquer comme null après libération
+		}
 	}
 
 	@Override

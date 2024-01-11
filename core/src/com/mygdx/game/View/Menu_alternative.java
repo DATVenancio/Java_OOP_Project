@@ -17,7 +17,6 @@ public class Menu_alternative {
     private Game game;
     private String name_player;
 
-    
     Map<Integer, Texture> pages = new HashMap<>(); 
     // Texture des menus
     private Texture menu1Texture;
@@ -50,6 +49,9 @@ public class Menu_alternative {
 
     // Texture actuelle pour les boucles
     private Texture currentTexture;
+    private Texture Mission;
+    private Texture Map;
+    private Texture Quete1;
     private long startTime;
     // Booléen pour passer de menu1 à menu2
     private boolean showMenu1 = true;
@@ -57,22 +59,16 @@ public class Menu_alternative {
     private int currentPage = 0;
     
     boolean gameStarted=false;
-    
-    
-    
+
     String chosenCharacter;
 
     public Menu_alternative() {
         batch = new SpriteBatch();
-        
         configurePages();
         // On vient initialiser le temps
         startTime = TimeUtils.millis();
         //game.create();
-        
     }
-
-    
 
     public void dessinerMenu()   // On vient dessiner le menu initial
     {
@@ -102,16 +98,12 @@ public class Menu_alternative {
             // on informe que la texture actuelle est menu2
             currentTexture = menu2Texture;
         }
-
         batch.end();  // Obligatoire pour finir le dessin sur un SpriteBatch
-
     }
-
 
     public void dessinerPage(int page)
     {
         batch.begin();
-
         // on vient dessiner les différentes pages en fonction de la page entrée en paramètre
 
         // dimensionnement de l'image
@@ -121,71 +113,33 @@ public class Menu_alternative {
         float x = (Gdx.graphics.getWidth() - imageWidth) / 2;
         float y = (Gdx.graphics.getHeight() - imageHeight) / 2;
 
-        
         if(currentPage==3) {
         	System.out.println("Quitter l'application");
             Gdx.app.exit();
-        }else if(currentPage==17){
+        }else if(currentPage==20){
         	if(gameStarted==false) {
-        		
         		game = new Game(chosenCharacter);
         		game.create();
-        		
         		gameStarted=true;
         	}
-        	
         	game.render();
         }else{
         	batch.draw(pages.get(currentPage),x,y);
             currentTexture= pages.get(currentPage);
         }
-        
         batch.end();
     }
-
     
     public void render() {
-
         manipulerMenu();
-        
         if(currentPage==0) {
         	dessinerMenu();
         }else {
         	dessinerPage(currentPage);
         }
-        
-    }
-
-
-    public void dispose() {
-        // pour la libération mémoire
-        batch.dispose();
-        // menu
-        menu1Texture.dispose();
-        menu2Texture.dispose();
-        menu3Texture.dispose();
-        regleTexture.dispose();
-        // choix caractéristique
-        choixForce.dispose();
-        choixDexterite.dispose();
-        choixIntelligence.dispose();
-        // personnages
-        ForceHomme.dispose();
-        ForceFemme.dispose();
-        DexteriteHomme.dispose();
-        DexteriteFemme.dispose();
-        IntelligenceHomme.dispose();
-        IntelligenceFemme.dispose();
-        // prologue et histoire
-        Prologue.dispose();
-        Histoire1.dispose();
-        Histoire2.dispose();
-        Histoire3.dispose();
-        game.dispose();
     }
 
     public void configurePages() {
-
         // On vient définir les textures-images pour les menus
         menu1Texture = new Texture("menu1.jpg");
         menu2Texture = new Texture("menu2.jpg");
@@ -211,6 +165,11 @@ public class Menu_alternative {
         Histoire2 = new Texture("histoire2.jpg");
         Histoire3 = new Texture("histoire3.jpg");
 
+
+        Map = new Texture("map_monde.png");
+        Quete1 = new Texture("quete1.jpg");
+        Mission = new Texture("mission_2.png");
+
         pages.put(1, menu3Texture);
 		pages.put(2, regleTexture);
 		pages.put(4, choixForce);
@@ -226,9 +185,10 @@ public class Menu_alternative {
 		pages.put(14, Histoire1);
 		pages.put(15, Histoire2);
 		pages.put(16, Histoire3);
-    	
+        pages.put(17,Map);
+        pages.put(18,Quete1);
+        pages.put(19, Mission);
     }
-
 
     public void manipulerMenu()
     {
@@ -242,7 +202,6 @@ public class Menu_alternative {
                 if (screenX >= 80 && screenX <= 300 && screenY >= 0 && screenY <= 150){
                     currentPage = 0;
                 }
-
                 // Si la texture actuelle est celle du menu 2 (nouvelle partie/ règles du jeu/quitter)
                 if (currentTexture == menu2Texture) {
                     if (screenX >= 385 && screenX <= 830 && screenY >= 360 && screenY <= 510) {
@@ -258,7 +217,6 @@ public class Menu_alternative {
                         currentPage = 3;
                     }
                 }
-
                 // Si la texture actuelle est celle du menu 3 (choix d'une caractéristique)
                 if (currentTexture == menu3Texture) {
                     if (screenX >= 80 && screenX <= 300 && screenY >= 0 && screenY <= 150){
@@ -277,7 +235,6 @@ public class Menu_alternative {
                         currentPage = 6;
                     }
                 }
-
                 // Si la texture actuelle est choixForce ou choixDexterite ou choixIntelligence
                 if (currentTexture == choixForce || currentTexture == choixDexterite || currentTexture == choixIntelligence) {
                     if (screenX >= 80 && screenX <= 300 && screenY >= 0 && screenY <= 150){
@@ -418,6 +375,28 @@ public class Menu_alternative {
                     }
                 }
 
+                // Si la texture actuelle est Mission
+                if (currentTexture == Map) {
+                    if (screenX >= 300 && screenX <= 900 && screenY >= 600 && screenY <= 800) {
+                        // bouton "Précédent"
+                        currentPage = 18;
+                    }
+                }
+
+                // Si la texture actuelle est Mission
+                if (currentTexture == Quete1) {
+                    if (screenX >= 300 && screenX <= 900 && screenY >= 600 && screenY <= 800) {
+                        // bouton "Précédent"
+                        currentPage = 19;
+                    }
+                }
+                // Si la texture actuelle est Mission
+                if (currentTexture == Mission) {
+                    if (screenX >= 300 && screenX <= 900 && screenY >= 600 && screenY <= 800) {
+                        // bouton "Précédent"
+                        currentPage = 20;
+                    }
+                }
                 return false;
             }
 
@@ -461,6 +440,36 @@ public class Menu_alternative {
                 return false;
             }
         });
+
     }
 
+    public void dispose() {
+        // pour la libération mémoire
+        batch.dispose();
+        // menu
+        menu1Texture.dispose();
+        menu2Texture.dispose();
+        menu3Texture.dispose();
+        regleTexture.dispose();
+        // choix caractéristique
+        choixForce.dispose();
+        choixDexterite.dispose();
+        choixIntelligence.dispose();
+        // personnages
+        ForceHomme.dispose();
+        ForceFemme.dispose();
+        DexteriteHomme.dispose();
+        DexteriteFemme.dispose();
+        IntelligenceHomme.dispose();
+        IntelligenceFemme.dispose();
+        // prologue et histoire
+        Prologue.dispose();
+        Histoire1.dispose();
+        Histoire2.dispose();
+        Histoire3.dispose();
+        Quete1.dispose();
+        Map.dispose();
+        Mission.dispose();
+        //game.dispose();
+    }
 }

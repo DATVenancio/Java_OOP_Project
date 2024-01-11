@@ -26,9 +26,16 @@ public class EnemyController extends ApplicationAdapter implements InputProcesso
 		this.enemyOnScreen = enemyOnScreen;
 	}
 
-	public void dispose () {
-		enemyOnScreen.dispose();
-		enemyTexture.dispose();
+	public void dispose() {
+		if (enemyOnScreen != null) {
+			enemyOnScreen.dispose();
+			enemyOnScreen = null; // Optionnel : marquer comme null après libération
+		}
+
+		if (enemyTexture != null) {
+			enemyTexture.dispose();
+			enemyTexture = null; // Optionnel : marquer comme null après libération
+		}
 	}
 
 	@Override

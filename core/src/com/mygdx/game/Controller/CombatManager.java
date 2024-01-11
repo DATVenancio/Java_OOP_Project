@@ -44,19 +44,26 @@ public class CombatManager extends ApplicationAdapter implements InputProcessor 
 				batch.draw(battle_1, 800, 200);
 
 				batch.end();
-				System.out.println("colide!");
+				//System.out.println("colide!");
 			}
 				
 		}
 	}
 
 	public void dispose() {
-		// pour la libération mémoire
-		batch.dispose();
-		battle_1.dispose();
+		if (batch != null) {
+			batch.dispose();
+			batch = null; // Optionnel : marquer comme null après libération
+		}
+
+		if (battle_1 != null) {
+			battle_1.dispose();
+			battle_1 = null; // Optionnel : marquer comme null après libération
+		}
 	}
-	
-	
+
+
+
 	public boolean createTurn(Dice dice,Enemy enemy) {
 
 		/*

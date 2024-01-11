@@ -49,9 +49,14 @@ public class PlayerController extends ApplicationAdapter implements InputProcess
 		this.playerOnScreen = playerOnScreen;
 	}
 
+	@Override
 	public void dispose() {
-		// pour la libération mémoire
-		characterImage.dispose();
+		// Libérer les ressources dans la sous-classe
+		if (characterImage != null) {
+			characterImage.dispose();
+		}
+		// Libérer les ressources dans la superclasse
+		super.dispose();
 	}
 
 	@Override

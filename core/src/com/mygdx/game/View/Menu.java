@@ -567,7 +567,7 @@ public class Menu {
         Histoire1.dispose();
         Histoire2.dispose();
         Histoire3.dispose();
-        game.dispose();
+        //game.dispose();
     }
 
     public int getPage() {
