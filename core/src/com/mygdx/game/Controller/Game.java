@@ -132,16 +132,15 @@ public class Game extends ApplicationAdapter {
 	
 	public void createTextures() {
 		background = new Texture("background.png");
-		accueil = new Texture("../../bin/main/accueil.png");
-		bag = new Texture("../../bin/main/bag.png");
-		caracteristic = new Texture("../../bin/main/caracteristic.png");
-		lifeAndAttack = new Texture("../../bin/main/life_attack_image.png");
+		accueil = new Texture("../../build/resources/main/accueil.png");
+		bag = new Texture("../../build/resources/main/bag.png");
+		caracteristic = new Texture("../../build/resources/main/caracteristic.png");
+		lifeAndAttack = new Texture("../../build/resources/main/life_attack_image.png");
 	}
 	
 	public void createPlayer() {
 		playerController = new PlayerController(batch,chosenCharacter);
 	}
-	
 	public void drawCanvas() {
 		float imageWidth = background.getWidth();
 		float imageHeight = background.getHeight();

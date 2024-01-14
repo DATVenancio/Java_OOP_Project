@@ -25,8 +25,8 @@ public class CombatManagerVisual {
 	}
 	
 	public void showBattleImage(Player player, Enemy enemy) {
-		battleImage = new Texture("../../bin/main/battle_"+enemy.getName()+".png");
-		battleResultImage = new Texture("../../bin/main/battle_result2.png");
+		battleImage = new Texture("../../build/resources/main/battle_"+enemy.getName()+".png");
+		battleResultImage = new Texture("../../build/resources/main/battle_result2.png");
 		batch.draw(battleResultImage, 800, 500);
 		
 		batch.draw(battleImage, 800, 200);
@@ -57,7 +57,7 @@ public class CombatManagerVisual {
 	}
 
 	public void showLoseGameImage() {
-		loseGameImage = new Texture("../../bin/main/lose_game_image.png");
+		loseGameImage = new Texture("../../build/resources/main/lose_game_image.png");
 		
 		float imageWidth = loseGameImage.getWidth();
 		float imageHeight = loseGameImage.getHeight();
@@ -68,7 +68,7 @@ public class CombatManagerVisual {
 	}
 	
 	public void showWinGameImage() {
-		winGameImage = new Texture("../../bin/main/win_game_image.png");
+		winGameImage = new Texture("../../build/resources/main/win_game_image.png");
 		
 		float imageWidth = winGameImage.getWidth();
 		float imageHeight = winGameImage.getHeight();

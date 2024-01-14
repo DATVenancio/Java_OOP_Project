@@ -21,7 +21,7 @@ public class FileReader {
 
 		        // Print the current working directory
 		    System.out.println("Current Path: " + currentPath);
-			Scanner scanner = new Scanner (new File("../../bin/main/charactersList.txt"));
+			Scanner scanner = new Scanner (new File("../../build/resources/main/charactersList.txt"));
 			
 			while(scanner.hasNextLine()) {
 				String[] lineParts = scanner.nextLine().split(",");
@@ -48,7 +48,7 @@ public class FileReader {
 	public ArrayList<Map<String,Object> > readPhase01Enemies(){
 		ArrayList<Map<String,Object> > enemies = new ArrayList<>(); 
 		try {
-			Scanner scanner = new Scanner (new File("../../bin/main/phase01EnemiesList.txt"));
+			Scanner scanner = new Scanner (new File("../../build/resources/main/phase01EnemiesList.txt"));
 			scanner.nextLine();//jump information line
 			while(scanner.hasNextLine()) {
 				String[] lineParts = scanner.nextLine().split(",");
@@ -75,7 +75,7 @@ public class FileReader {
 	public ArrayList<Map<String,Object> > readPhase01Items(){
 		ArrayList<Map<String,Object> > items = new ArrayList<>(); 
 		try {
-			Scanner scanner = new Scanner (new File("../../bin/main/phase01ItemsList.txt"));
+			Scanner scanner = new Scanner (new File("../../build/resources/main/phase01ItemsList.txt"));
 			scanner.nextLine();//jump information line
 			while(scanner.hasNextLine()) {
 				String[] lineParts = scanner.nextLine().split(",");
