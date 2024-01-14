@@ -1,7 +1,7 @@
 package com.mygdx.game.Model;
 
 public abstract class Item {
-	private String type;
+	protected String type;
 	private float weight;
 	protected String name;
 	private String description;
@@ -10,7 +10,8 @@ public abstract class Item {
 	public abstract void actionWhenRemoved(Player player);
 	
 	
-	public Item(String name) {
+	public Item(String type,String name) {
+		this.type=type;
 		this.name = name;
 	}
 	
@@ -46,5 +47,13 @@ public abstract class Item {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
+	
+	
 
 }

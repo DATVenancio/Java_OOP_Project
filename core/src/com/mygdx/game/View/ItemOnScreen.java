@@ -6,7 +6,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 
 public class ItemOnScreen extends ElementOnScreen{
-	SpriteBatch batch;
 	public ItemOnScreen(SpriteBatch batch,Texture image,Vector2 inicialPosition) {
 		this.batch=batch;
 		sprite= new  Sprite(image);

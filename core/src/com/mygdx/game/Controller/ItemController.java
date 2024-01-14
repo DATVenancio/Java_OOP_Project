@@ -14,10 +14,10 @@ import com.mygdx.game.Model.UsableItem;
 import com.mygdx.game.View.EnemyOnScreen;
 import com.mygdx.game.View.ItemOnScreen;
 
-public class ItemController {
-	private Texture itemTexture;
-	private ItemOnScreen itemOnScreen;
-	private Item item;
+public abstract class ItemController {
+	protected Texture itemTexture;
+	protected ItemOnScreen itemOnScreen;
+	protected Item item;
 	
 	public ItemController(SpriteBatch batch,Map<String,Object> itemInfos) {
 		createItemOnScreen(batch,itemInfos);
@@ -29,31 +29,8 @@ public class ItemController {
 		itemTexture = new Texture("../assets/"+itemInfos.get("name")+".png");
 		itemOnScreen = new ItemOnScreen(batch,itemTexture, position);
 	}
-	private void createItem(Map<String,Object> itemInfos) {
-		String type = (String) itemInfos.get("type");
-		String name = (String) itemInfos.get("name");
-		int power = Integer.parseInt( (String)itemInfos.get("power"));
-		if(type.equals("usable")) {
-			item = new UsableItem(name);
-		}
-		if(type.equals("sword")) {
-			item = new Sword(name,power);
-		}
-		if(type.equals("staff")) {
-			item = new Staff(name,power);
-		}
-		if(type.equals("bow")) {
-			item = new Bow(name,power);
-		}
-		
-	}
+	protected abstract void createItem(Map<String,Object> itemInfos);
 	
-	
-	
-	
-	
-	
-
 	public Item getItem() {
 		return item;
 	}

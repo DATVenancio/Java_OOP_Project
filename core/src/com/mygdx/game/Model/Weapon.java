@@ -1,12 +1,14 @@
 package com.mygdx.game.Model;
 
 public abstract class Weapon extends Item {
+	protected int power;
+	
 	public Weapon(String name, int power) {
-		super(name);
+		super("weapon",name);
 		this.power=power;
 		// TODO Auto-generated constructor stub
 	}
-	private int power;
+
 	
 	
 	public abstract void increaseAtribute(Player player);
