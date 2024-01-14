@@ -67,12 +67,23 @@ public class Game extends ApplicationAdapter {
 		
 		ScreenUtils.clear(0, 0, 0, 1);
 		batch.begin();
+		
 		drawCanvas();
 		drawPlayer();
 		drawEnemies();
+		
 		checkEndGame();
+		
 		combatManagement();
 		itemManagement();
+		checkPlayerWin();
+		
+		
+		if(itemManager.allRelicsCollected() && combatManager.allEnemiesDied()) {
+			System.out.println("oi");
+			combatManager.getCombatManagerOnScreen().showWinGameImage();
+		}
+		
 		batch.end();
 		
 		checkCommands();
@@ -137,10 +148,10 @@ public class Game extends ApplicationAdapter {
 		float x = (Gdx.graphics.getWidth() - imageWidth) / 2;
 		float y = (Gdx.graphics.getHeight() - imageHeight) / 2;
 		batch.draw(background, x, y);
-		batch.draw(accueil, 20, 860);
-		batch.draw(bag,0,642);
-		batch.draw(caracteristic,0,0,213,642);
-		batch.draw(lifeAndAttack,1450,800,400,200);
+		batch.draw(accueil, 20, 900);
+		batch.draw(bag,0,0);
+		batch.draw(caracteristic,1300,0,600,223);
+		batch.draw(lifeAndAttack,1425,800,400,200);
 		playerController.getPlayerOnScreen().drawCaracteristics(playerController.getPlayer());
 		playerController.getPlayerOnScreen().drawItemsNames(playerController.getPlayer());
 	}
@@ -182,19 +193,28 @@ public class Game extends ApplicationAdapter {
 	public void checkEndGame() {
 		if(playerHasDied) {
 			try {
-	            Thread.sleep(3000);
+	            Thread.sleep(10000);
 	        } catch (InterruptedException e) {
 
 	            e.printStackTrace();
 	        }
 			System.exit(0);
-		}else if(playerWin()) {
+		}else if(playerWon) {
+			
+			try {
+	            Thread.sleep(10000);
+	        } catch (InterruptedException e) {
+
+	            e.printStackTrace();
+	        }
 			System.exit(0);
 		}
 	}
-	private boolean playerWin() {
+	private boolean checkPlayerWin() {
 		if(itemManager.allRelicsCollected() && combatManager.allEnemiesDied()){
-			playerWon = true;
+			System.out.println("finalise");
+			combatManager.setPlayerHasWon(true);
+			playerWon=true;
 			return true;
 		}
 		return false;

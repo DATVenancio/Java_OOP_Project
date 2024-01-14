@@ -27,6 +27,7 @@ public class CombatManager extends ApplicationAdapter implements InputProcessor 
 	private boolean inCombat=false;
 	private boolean enemyHasDied = false;
 	private boolean playerHasDied = false;
+	private boolean playerHasWon = false;
 
 	
 
@@ -46,26 +47,34 @@ public class CombatManager extends ApplicationAdapter implements InputProcessor 
 		this.enemiesController=enemiesController;
 	}
 	public void checkCombat() {
+		
+		if(playerHasWon) {
+			combatManagerOnScreen.showDiceResult(3);
+		}
+
 		if(!playerHasDied()) {
-			checkPlayerWon();
+			playerWon();
 			checkEnemyHasDied();
 			checkEnemyCollision();
 			if(inCombat) {
 				checkDiceRoll();
 				checkCurrentEnemyLifeState();
 				checkPlayerLifeState();
+				checkPlayerWon();
+				
 			}
 		}
 		
 	}
-	public void checkPlayerWon() {
-		if(Game.playerWon) {
+	public void playerWon() {
+		if(playerHasWon) {
+			waitInMilisec(3000);
 			combatManagerOnScreen.showWinGameImage();
 		}
 	}
 	public boolean playerHasDied() {
 		if(playerHasDied) {
-			waitInMilisec(3000);
+			waitInMilisec(6000);
 			combatManagerOnScreen.showLoseGameImage();
 			Game.endGame();
 			return true;
@@ -102,8 +111,12 @@ public class CombatManager extends ApplicationAdapter implements InputProcessor 
 		if(playerController.getPlayer().getLife()<=0) {
 			reloadBattleImage();
 			playerHasDied=true;
-			
-			
+		}
+	}
+	public void checkPlayerWon() {
+		if(allEnemiesDied()  && ItemManager.allRelicsCollected() ) {
+			reloadBattleImage();
+			playerHasWon=true;
 		}
 	}
 	
@@ -182,14 +195,35 @@ public class CombatManager extends ApplicationAdapter implements InputProcessor 
 	
 	//gets and sets
 	
+	
+	
+	
 	public PlayerController getPlayerController() {
 		return playerController;
+	}
+
+	public boolean isPlayerHasWon() {
+		return playerHasWon;
+	}
+
+	public void setPlayerHasWon(boolean playerHasWon) {
+		this.playerHasWon = playerHasWon;
 	}
 
 	public void setPlayerController(PlayerController playerController) {
 		this.playerController = playerController;
 	}
+	
+	
 
+
+	public CombatManagerVisual getCombatManagerOnScreen() {
+		return combatManagerOnScreen;
+	}
+
+	public void setCombatManagerOnScreen(CombatManagerVisual combatManagerOnScreen) {
+		this.combatManagerOnScreen = combatManagerOnScreen;
+	}
 
 	@Override
 	public boolean keyDown(int keycode) {

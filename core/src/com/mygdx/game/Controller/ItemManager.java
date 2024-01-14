@@ -9,7 +9,7 @@ import com.mygdx.game.Model.Item;
 import com.mygdx.game.View.ItemOnScreen;
 
 public class ItemManager {
-	private ArrayList<ItemController> itemsController = new ArrayList<ItemController>();
+	static ArrayList<ItemController> itemsController = new ArrayList<ItemController>();
 	private PlayerController playerController;
 	private SpriteBatch batch;
 	
@@ -49,7 +49,7 @@ public class ItemManager {
 	}
 	
 	
-	public boolean allRelicsCollected() {
+	static boolean allRelicsCollected() {
 		for(ItemController itemController:itemsController) {
 			if(itemController.getItem().getType().equals(String.valueOf("usable"))){
 				return false;
