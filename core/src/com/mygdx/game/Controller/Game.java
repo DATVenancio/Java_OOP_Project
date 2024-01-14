@@ -118,10 +118,10 @@ public class Game extends ApplicationAdapter implements InputProcessor {
 	
 	public void createTextures() {
 		background = new Texture("background.png");
-		accueil = new Texture("../assets/accueil.png");
-		bag = new Texture("../assets/bag.png");
-		caracteristic = new Texture("../assets/caracteristic.png");
-		lifeAndAttack = new Texture("../assets/life_attack_image.png");
+		accueil = new Texture("accueil.png");
+		bag = new Texture("bag.png");
+		caracteristic = new Texture("caracteristic.png");
+		lifeAndAttack = new Texture("life_attack_image.png");
 	}
 	
 	public void createPlayer() {
@@ -135,9 +135,9 @@ public class Game extends ApplicationAdapter implements InputProcessor {
 		float y = (Gdx.graphics.getHeight() - imageHeight) / 2;
 		batch.draw(background, x, y);
 		batch.draw(accueil, 20, 860);
-		batch.draw(bag,0,642);
-		batch.draw(caracteristic,0,0,213,642);
-		batch.draw(lifeAndAttack,1450,800,400,200);
+		batch.draw(bag,0,0);
+		batch.draw(caracteristic,1300,0,600,223);
+		batch.draw(lifeAndAttack,1425,800,400,200);
 		playerController.getPlayerOnScreen().drawCaracteristics(playerController.getPlayer());
 		playerController.getPlayerOnScreen().drawItemsNames(playerController.getPlayer());
 	}

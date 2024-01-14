@@ -24,7 +24,7 @@ public class EnemyController extends ApplicationAdapter implements InputProcesso
 	
 	private void createEnemyOnScreen(SpriteBatch batch, Map<String,Object> enemyInfos) {
 		Vector2 position = new Vector2(Integer.valueOf((String) enemyInfos.get("positionX")),Integer.valueOf((String) enemyInfos.get("positionY")));
-		enemyTexture = new Texture("../assets/"+enemyInfos.get("name")+".png");
+		enemyTexture = new Texture(enemyInfos.get("name")+".png");
 		enemyOnScreen = new EnemyOnScreen(batch,enemyTexture, position);
 	}
 	private void createEnemy(Map<String,Object> enemyInfos) {

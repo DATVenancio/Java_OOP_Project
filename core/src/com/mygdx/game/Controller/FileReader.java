@@ -17,7 +17,7 @@ public class FileReader {
 		Map<String,Object> characterInfos = new HashMap<String,Object>();
 		
 		try {
-			Scanner scanner = new Scanner (new File("../assets/charactersList.txt"));
+			Scanner scanner = new Scanner (new File("./assets/charactersList.txt"));
 			
 			while(scanner.hasNextLine()) {
 				String[] lineParts = scanner.nextLine().split(",");
@@ -44,7 +44,7 @@ public class FileReader {
 	public ArrayList<Map<String,Object> > readPhase01Enemies(){
 		ArrayList<Map<String,Object> > enemies = new ArrayList<>(); 
 		try {
-			Scanner scanner = new Scanner (new File("../assets/phase01EnemiesList.txt"));
+			Scanner scanner = new Scanner (new File("./assets/phase01EnemiesList.txt"));
 			scanner.nextLine();//jump information line
 			while(scanner.hasNextLine()) {
 				String[] lineParts = scanner.nextLine().split(",");
@@ -71,7 +71,7 @@ public class FileReader {
 	public ArrayList<Map<String,Object> > readPhase01Items(){
 		ArrayList<Map<String,Object> > items = new ArrayList<>(); 
 		try {
-			Scanner scanner = new Scanner (new File("../assets/phase01ItemsList.txt"));
+			Scanner scanner = new Scanner (new File("./assets/phase01ItemsList.txt"));
 			scanner.nextLine();//jump information line
 			while(scanner.hasNextLine()) {
 				String[] lineParts = scanner.nextLine().split(",");

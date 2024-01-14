@@ -24,8 +24,8 @@ public class CombatManagerOnScreen {
 	}
 	
 	public void showBattleImage(Player player, Enemy enemy) {
-		battle_image = new Texture("../assets/battle_"+enemy.getName()+".png");
-		battle_result_image = new Texture("../assets/battle_result2.png");
+		battle_image = new Texture("battle_"+enemy.getName()+".png");
+		battle_result_image = new Texture("battle_result2.png");
 		batch.draw(battle_result_image, 800, 500);
 		
 		batch.draw(battle_image, 800, 200);
@@ -56,7 +56,7 @@ public class CombatManagerOnScreen {
 	}
 
 	public void showLoseGameImage() {
-		lose_game_image = new Texture("../assets/lose_game_image.png");
+		lose_game_image = new Texture("lose_game_image.png");
 		
 		float imageWidth = lose_game_image.getWidth();
 		float imageHeight = lose_game_image.getHeight();

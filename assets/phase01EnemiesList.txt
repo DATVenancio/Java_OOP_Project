@@ -1,6 +1,6 @@
 enemy,life,attack,positionX,positionY
 geant_nain,20,2,1100,800
-griffon_harpie,17,1,1300,250
-kraken_sirene,25,5,700,200
-loup_elfe,14,4,800,600
-serpent_dragon,25,10,400,440
+geant_nain,17,1,1300,250
+geant_nain,25,5,700,200
+geant_nain,14,4,800,700
+chef_geant,45,20,200,450
