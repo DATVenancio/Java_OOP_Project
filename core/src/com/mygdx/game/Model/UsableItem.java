@@ -2,8 +2,9 @@ package com.mygdx.game.Model;
 
 public class UsableItem extends Item {
 
-	public UsableItem(String name) {
-		super(name);
+	public UsableItem(String type,String name) {
+		super(type,name);
+	
 		// TODO Auto-generated constructor stub
 	}
 

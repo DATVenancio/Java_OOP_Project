@@ -2,7 +2,6 @@ package com.mygdx.game.Model;
 
 public class Staff extends Weapon {
 	
-	
 	public Staff(String name,int power) {
 		super(name,power);
 		// TODO Auto-generated constructor stub

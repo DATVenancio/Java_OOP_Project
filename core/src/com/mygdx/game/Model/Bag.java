@@ -11,7 +11,7 @@ public class Bag {
 	private ArrayList<Item> items = new ArrayList<Item>();
 	
 	public Bag(Player player) {
-		this.capacity=5;
+		this.capacity=20;
 		this.amountOfItems=0;
 		this.totalWeight=0;
 		this.player=player;

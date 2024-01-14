@@ -2,11 +2,13 @@ package com.mygdx.game.View;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 
 public class ElementOnScreen extends ApplicationAdapter{
-	public Vector2 position;
-	public Sprite sprite;
+	protected Vector2 position;
+	protected Sprite sprite;
+	protected SpriteBatch batch;
 
 	public boolean isCollidingWith(ElementOnScreen elementOnScreen) {
 		if(sprite.getBoundingRectangle().overlaps(elementOnScreen.getSprite().getBoundingRectangle())) {

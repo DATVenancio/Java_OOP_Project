@@ -5,6 +5,7 @@ import java.util.Map;
 public class Player {
 	
 	private String name;
+	private String atributes;
 	
 	
 	private int stregth;
@@ -34,6 +35,8 @@ public class Player {
 		this.life = Integer.parseInt(  characterInfo.get("life").toString());
 		
 		chooseDesignation(characterInfo.get("designation").toString());
+		designation.changeAttributes(this);
+		
 		this.bag = new Bag(this);
 
 	}
@@ -49,12 +52,12 @@ public class Player {
 	
 	public void chooseDesignation(String chosenDesignation){
 		if(chosenDesignation.equals("strength")) {
-			this.designation = new StrengthDesignation(this);
+			this.designation = new StrengthDesignation();
 		}
 		else if(chosenDesignation.equals("intelligence")) {
-			this.designation = new IntelligenceDesignation(this);
+			this.designation = new IntelligenceDesignation();
 		}else {
-			this.designation = new DexterityDesignation(this);
+			this.designation = new DexterityDesignation();
 		}
 	}
 	
@@ -148,6 +151,16 @@ public class Player {
 	public void setRuse(int ruse) {
 		this.ruse = ruse;
 	}
+
+	public String getAtributes() {
+		return atributes;
+	}
+
+	public void setAtributes(String atributes) {
+		this.atributes = atributes;
+	}
+	
+	
 	
 	
 	

@@ -9,7 +9,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 
 public class EnemyOnScreen extends ElementOnScreen {
-	SpriteBatch batch;
 	public EnemyOnScreen(SpriteBatch batch,Texture image,Vector2 inicialPosition) {
 		this.batch=batch;
 		sprite= new  Sprite(image);

@@ -250,21 +250,21 @@ public class Menu {
             public boolean touchUp(int screenX, int screenY, int pointer, int bouton) {
 
                 // Pour le bouton retour
-                if (screenX >= 80 && screenX <= 300 && screenY >= 0 && screenY <= 300){
+                if (screenX >= 110 && screenX <= 290 && screenY >= 25 && screenY <= 95){
                     currentPage = 0;
                 }
 
                 // Si la texture actuelle est celle du menu 2 (nouvelle partie/ règles du jeu/quitter)
                 if (currentTexture == menu2Texture) {
-                    if (screenX >= 385 && screenX <= 830 && screenY >= 360 && screenY <= 510) {
+                    if (screenX >= 395 && screenX <= 805 && screenY >= 320 && screenY <= 475) {
                         // bouton "Nouvelle partie"
                         currentPage = 1;
                     }
-                    if (screenX >= 385 && screenX <= 830 && screenY >= 590 && screenY <= 740) {
+                    if (screenX >= 395 && screenX <= 805 && screenY >= 555 && screenY <= 700) {
                         // bouton "Règles du jeu"
                         currentPage = 2;
                     }
-                    if (screenX >= 385 && screenX <= 830 && screenY >= 830 && screenY <= 980) {
+                    if (screenX >= 395 && screenX <= 805 && screenY >= 790 && screenY <= 935) {
                         // bouton "Quitter"
                         currentPage = 3;
                     }
@@ -272,18 +272,18 @@ public class Menu {
 
                 // Si la texture actuelle est celle du menu 3 (choix d'une caractéristique)
                 if (currentTexture == menu3Texture) {
-                    if (screenX >= 80 && screenX <= 300 && screenY >= 0 && screenY <= 200){
+                    if (screenX >= 110 && screenX <= 290 && screenY >= 25 && screenY <= 95){
                         currentPage = 0;
                     }
-                    if (screenX >= 235 && screenX <= 680 && screenY >= 220 && screenY <= 990) {
+                    if (screenX >= 180 && screenX <= 555 && screenY >= 210 && screenY <= 980) {
                         // choix "Force"
                         currentPage = 4;
                     }
-                    if (screenX >= 885 && screenX <= 1330 && screenY >= 220 && screenY <= 990) {
+                    if (screenX >= 775 && screenX <= 1145 && screenY >= 220 && screenY <= 980) {
                         // choix "Dextérité"
                         currentPage = 5;
                     }
-                    if (screenX >= 1510 && screenX <= 1955 && screenY >= 220 && screenY <= 990) {
+                    if (screenX >= 1360 && screenX <= 1725 && screenY >= 220 && screenY <= 980) {
                         // choix "Intelligence"
                         currentPage = 6;
                     }
@@ -291,12 +291,12 @@ public class Menu {
 
                 // Si la texture actuelle est choixForce ou choixDexterite ou choixIntelligence
                 if (currentTexture == choixForce || currentTexture == choixDexterite || currentTexture == choixIntelligence) {
-                    if (screenX >= 80 && screenX <= 300 && screenY >= 0 && screenY <= 200){
+                    if (screenX >= 110 && screenX <= 290 && screenY >= 25 && screenY <= 95){
                         currentPage = 1;
                     }
 
                     // Si on est dans la zone "Homme" des pages
-                    if (screenX >= 600 && screenX <= 1040 && screenY >= 240 && screenY <= 965) {
+                    if (screenX >= 530 && screenX <= 870 && screenY >= 230 && screenY <= 970) {
                         if(currentTexture == choixForce){
                             // bouton "Choix Homme Force"
                         	
@@ -313,7 +313,7 @@ public class Menu {
                     }
 
                     // Si on est dans la zone "Femme" des pages
-                    if (screenX >= 1155 && screenX <= 1595 && screenY >= 240 && screenY <= 965) {
+                    if (screenX >= 1040 && screenX <= 1380 && screenY >= 230 && screenY <= 970) {
                         if(currentTexture == choixForce){
                             // bouton "Choix Femme Force"
                             currentPage = 8;
@@ -331,16 +331,16 @@ public class Menu {
 
                 // Si la texture actuelle est "Choix Force Homme" ou "Choix Force Femme"
                 if (currentTexture == ForceHomme || currentTexture == ForceFemme) {
-                    if (screenX >= 80 && screenX <= 300 && screenY >= 0 && screenY <= 150){
+                    if (screenX >= 110 && screenX <= 290 && screenY >= 25 && screenY <= 95){
                         currentPage = 4;
                     }
-                    if(screenX >= 1200 && screenX <= 2030 && screenY >= 800 && screenY <= 955 && currentTexture == ForceHomme){
+                    if(screenX >= 1530 && screenX <= 1815 && screenY >= 900 && screenY <= 1000 && currentTexture == ForceHomme){
                         // On vient relever que le nom du player est "ForceHomme"
                     	//createForceMan()
                     	chosenCharacter = "perso_forcehomme";
                         currentPage = 13;
                     }
-                    if(screenX >= 1200 && screenX <= 2030 && screenY >= 800 && screenY <= 955 && currentTexture == ForceFemme){
+                    if(screenX >= 1530 && screenX <= 1815 && screenY >= 900 && screenY <= 1000 && currentTexture == ForceFemme){
                         // On vient relever que le nom du player est "ForceFemme"
                     	chosenCharacter = "perso_forcefemme";
                         currentPage = 13;
@@ -349,16 +349,16 @@ public class Menu {
 
                 // Si la texture actuelle est "Choix Dexterite Homme" ou "Choix Dexterite Femme"
                 if (currentTexture == DexteriteHomme || currentTexture == DexteriteFemme) {
-                    if (screenX >= 80 && screenX <= 300 && screenY >= 0 && screenY <= 150){
+                    if (screenX >= 110 && screenX <= 290 && screenY >= 25 && screenY <= 95){
                         currentPage = 5;
                     }
-                    if(screenX >= 1200 && screenX <= 2030 && screenY >= 800 && screenY <= 955 && currentTexture == DexteriteHomme){
+                    if(screenX >= 1530 && screenX <= 1815 && screenY >= 900 && screenY <= 1000 && currentTexture == DexteriteHomme){
                         // On vient relever que le nom du player est "DexteriteHomme" et on l'affiche
                     	chosenCharacter = "perso_dexteritehomme";
                        
                         currentPage = 13;
                     }
-                    if(screenX >= 1200 && screenX <= 2030 && screenY >= 800 && screenY <= 955 && currentTexture == DexteriteFemme){
+                    if(screenX >= 1530 && screenX <= 1815 && screenY >= 900 && screenY <= 1000 && currentTexture == DexteriteFemme){
                         // On vient relever que le nom du player est "DexteriteFemme" et on l'affiche
                     	chosenCharacter = "perso_dexteritefemme";
                         
@@ -368,16 +368,16 @@ public class Menu {
 
                 // Si la texture actuelle est "Choix Intelligence Homme" ou "Choix Intelligence Femme"
                 if (currentTexture == IntelligenceHomme || currentTexture == IntelligenceFemme) {
-                    if (screenX >= 80 && screenX <= 300 && screenY >= 0 && screenY <= 150){
+                    if (screenX >= 110 && screenX <= 290 && screenY >= 25 && screenY <= 95){
                         currentPage = 6;
                     }
-                    if(screenX >= 1200 && screenX <= 2030 && screenY >= 800 && screenY <= 955 && currentTexture == IntelligenceHomme){
+                    if(screenX >= 1530 && screenX <= 1815 && screenY >= 900 && screenY <= 1000 && currentTexture == IntelligenceHomme){
                         // On vient relever le nom du player et on l'affiche
                     	chosenCharacter = "perso_intelligencehomme";
                        
                         currentPage = 13;
                     }
-                    if(screenX >= 1200 && screenX <= 2030 && screenY >= 800 && screenY <= 955 && currentTexture == IntelligenceFemme){
+                    if(screenX >= 1530 && screenX <= 1815 && screenY >= 900 && screenY <= 1000 && currentTexture == IntelligenceFemme){
                         // On vient relever le nom du player et on l'affiche
                     	chosenCharacter = "perso_intelligencefemme";
                        
@@ -386,7 +386,7 @@ public class Menu {
                 }
 
                 // Si la texture actuelle est Map,on doit cliquer sur le monde des nains
-                if (currentTexture == Map && screenX >= 80 && screenX <= 300 && screenY >= 0 && screenY <= 150){
+                if (currentTexture == Map && screenX >= 110 && screenX <= 290 && screenY >= 25 && screenY <= 95){
                     currentPage = 1;
                 }
                 if (currentTexture == Map && screenX >= 1200 && screenX <= 1500 && screenY >= 500 && screenY <= 600) {
@@ -400,10 +400,10 @@ public class Menu {
 
                 // Si la texture actuelle est Histoire page 1
                 if (currentTexture == Histoire1) {
-                    if (screenX >= 80 && screenX <= 300 && screenY >= 0 && screenY <= 150){
+                    if (screenX >= 110 && screenX <= 290 && screenY >= 25 && screenY <= 95){
                         currentPage = 13;
                     }
-                    if (screenX >= 1500 && screenX <= 1800 && screenY >= 850 && screenY <= 1040) {
+                    if (screenX >= 1480 && screenX <= 1695 && screenY >= 920 && screenY <= 1000) {
                         // bouton "Suivant"
                         currentPage = 16;
                     }
@@ -411,11 +411,11 @@ public class Menu {
 
                 // Si la texture actuelle est Histoire page 2
                 if (currentTexture == Histoire2) {
-                    if (screenX >= 1285 && screenX <= 1450 && screenY >= 850 && screenY <= 1040) {
+                    if (screenX >= 1230 && screenX <= 1440 && screenY >= 920 && screenY <= 1000) {
                         // bouton "Précédent"
                         currentPage = 15;
                     }
-                    if (screenX >= 1500 && screenX <= 1800 && screenY >= 850 && screenY <= 1040) {
+                    if (screenX >= 1480 && screenX <= 1695 && screenY >= 920 && screenY <= 1000) {
                         // bouton "Suivant"
                         currentPage = 17;
                     }
@@ -423,20 +423,20 @@ public class Menu {
 
                 // Si la texture actuelle est Histoire page 3
                 if (currentTexture == Histoire3) {
-                    if (screenX >= 1285 && screenX <= 1450 && screenY >= 850 && screenY <= 1040) {
+                    if (screenX >= 1230 && screenX <= 1440 && screenY >= 920 && screenY <= 1000) {
                         // bouton "Précédent"
                         currentPage = 16;
                     }
-                    if (screenX >= 1500 && screenX <= 1800 && screenY >= 850 && screenY <= 1040) {
+                    if (screenX >= 1480 && screenX <= 1695 && screenY >= 920 && screenY <= 1000) {
                         // bouton "Démarrer"
                         currentPage = 18;
                     }
                 }
 
                 // Si la texture actuelle est Mission, on peut cliquer n'importe où sur l'écran pour continuer
-                if (currentTexture == Mission && screenX >= 80 && screenX <= 300 && screenY >= 50 && screenY <= 150){
+                if (currentTexture == Mission && screenX >= 110 && screenX <= 300 && screenY >= 25 && screenY <= 95){
                     currentPage = 18;
-                }if (currentTexture == Mission && screenX >= 800 && screenX <= 1200 && screenY >= 700 && screenY <= 750) {
+                }if (currentTexture == Mission && screenX >= 800 && screenX <= 1130 && screenY >= 685 && screenY <= 750) {
                     currentPage = 19;
                 }
 

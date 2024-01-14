@@ -12,28 +12,25 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.Model.Dice;
 import com.mygdx.game.Model.Enemy;
 import com.mygdx.game.Model.Player;
-import com.mygdx.game.View.CombatManagerOnScreen;
+import com.mygdx.game.View.CombatManagerVisual;
 
 public class CombatManager extends ApplicationAdapter implements InputProcessor {
 	
 	private static CombatManager instance;
-	private CombatManagerOnScreen combatManagerOnScreen = new CombatManagerOnScreen();
-	
+	private CombatManagerVisual combatManagerOnScreen = new CombatManagerVisual();
 	private PlayerController playerController;
 	private EnemyController currentEnemy;
-	
-	
-	
 	private ArrayList<EnemyController> enemiesController;
-	private boolean inCombat=false;
 	private Dice dice6Sides = new Dice(6);
-	private int diceResult=0;
+	
+	
+	private boolean inCombat=false;
 	private boolean enemyHasDied = false;
 	private boolean playerHasDied = false;
+	private boolean playerHasWon = false;
 
 	
 
-	
 	private CombatManager() {};
 	
 	public static CombatManager getInstance() {
@@ -50,20 +47,34 @@ public class CombatManager extends ApplicationAdapter implements InputProcessor 
 		this.enemiesController=enemiesController;
 	}
 	public void checkCombat() {
+		
+		if(playerHasWon) {
+			combatManagerOnScreen.showDiceResult(3);
+		}
+
 		if(!playerHasDied()) {
+			playerWon();
 			checkEnemyHasDied();
 			checkEnemyCollision();
 			if(inCombat) {
 				checkDiceRoll();
 				checkCurrentEnemyLifeState();
 				checkPlayerLifeState();
+				checkPlayerWon();
+				
 			}
 		}
 		
 	}
+	public void playerWon() {
+		if(playerHasWon) {
+			waitInMilisec(3000);
+			combatManagerOnScreen.showWinGameImage();
+		}
+	}
 	public boolean playerHasDied() {
 		if(playerHasDied) {
-			waitInMilisec(3000);
+			waitInMilisec(6000);
 			combatManagerOnScreen.showLoseGameImage();
 			Game.endGame();
 			return true;
@@ -100,8 +111,12 @@ public class CombatManager extends ApplicationAdapter implements InputProcessor 
 		if(playerController.getPlayer().getLife()<=0) {
 			reloadBattleImage();
 			playerHasDied=true;
-			
-			
+		}
+	}
+	public void checkPlayerWon() {
+		if(allEnemiesDied()  && ItemManager.allRelicsCollected() ) {
+			reloadBattleImage();
+			playerHasWon=true;
 		}
 	}
 	
@@ -157,6 +172,14 @@ public class CombatManager extends ApplicationAdapter implements InputProcessor 
 		int enemyAttack = currentEnemy.getEnemy().getAttack();
 		playerController.getPlayer().setLife(playerLife-enemyAttack);
 	}
+	public boolean allEnemiesDied() {
+		for(EnemyController enemyController:enemiesController) {
+			if(enemyController.getEnemy().isAlive()) {
+				return false;
+			}
+		}
+		return true;
+	}
 
 	
 
@@ -172,14 +195,35 @@ public class CombatManager extends ApplicationAdapter implements InputProcessor 
 	
 	//gets and sets
 	
+	
+	
+	
 	public PlayerController getPlayerController() {
 		return playerController;
+	}
+
+	public boolean isPlayerHasWon() {
+		return playerHasWon;
+	}
+
+	public void setPlayerHasWon(boolean playerHasWon) {
+		this.playerHasWon = playerHasWon;
 	}
 
 	public void setPlayerController(PlayerController playerController) {
 		this.playerController = playerController;
 	}
+	
+	
 
+
+	public CombatManagerVisual getCombatManagerOnScreen() {
+		return combatManagerOnScreen;
+	}
+
+	public void setCombatManagerOnScreen(CombatManagerVisual combatManagerOnScreen) {
+		this.combatManagerOnScreen = combatManagerOnScreen;
+	}
 
 	@Override
 	public boolean keyDown(int keycode) {

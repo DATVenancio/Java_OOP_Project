@@ -79,7 +79,7 @@ project(":desktop") {
     jar {
         manifest {
             attributes(
-                    'Main-Class': "com.mygdx.game.DesktopLauncher" // Spécifiez la classe principale ici
+                    'Main-Class': "com.mygdx.game.DesktopLauncher.main()" // Spécifiez la classe principale ici
             )
         }
     }
