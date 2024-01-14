@@ -26,7 +26,7 @@ public abstract class ItemController {
 	}
 	private void createItemOnScreen(SpriteBatch batch, Map<String,Object> itemInfos) {
 		Vector2 position = new Vector2(Integer.valueOf((String) itemInfos.get("positionX")),Integer.valueOf((String) itemInfos.get("positionY")));
-		itemTexture = new Texture("../assets/"+itemInfos.get("name")+".png");
+		itemTexture = new Texture("../../bin/main/"+itemInfos.get("name")+".png");
 		itemOnScreen = new ItemOnScreen(batch,itemTexture, position);
 	}
 	protected abstract void createItem(Map<String,Object> itemInfos);

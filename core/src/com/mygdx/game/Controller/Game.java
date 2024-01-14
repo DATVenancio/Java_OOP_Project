@@ -132,10 +132,10 @@ public class Game extends ApplicationAdapter {
 	
 	public void createTextures() {
 		background = new Texture("background.png");
-		accueil = new Texture("../assets/accueil.png");
-		bag = new Texture("../assets/bag.png");
-		caracteristic = new Texture("../assets/caracteristic.png");
-		lifeAndAttack = new Texture("../assets/life_attack_image.png");
+		accueil = new Texture("../../bin/main/accueil.png");
+		bag = new Texture("../../bin/main/bag.png");
+		caracteristic = new Texture("../../bin/main/caracteristic.png");
+		lifeAndAttack = new Texture("../../bin/main/life_attack_image.png");
 	}
 	
 	public void createPlayer() {
