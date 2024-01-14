@@ -8,10 +8,10 @@ import com.mygdx.game.Controller.EnemyController;
 import com.mygdx.game.Model.Enemy;
 import com.mygdx.game.Model.Player;
 
-public class CombatManagerOnScreen {
-	private Texture battle_image;
-	private Texture battle_result_image;
-	private Texture lose_game_image;
+public class CombatManagerVisual {
+	private Texture battleImage;
+	private Texture battleResultImage;
+	private Texture loseGameImage;
 	private SpriteBatch batch;
 	private BitmapFont font = new BitmapFont();
 	private String diceResult=" ";
@@ -24,11 +24,11 @@ public class CombatManagerOnScreen {
 	}
 	
 	public void showBattleImage(Player player, Enemy enemy) {
-		battle_image = new Texture("../assets/battle_"+enemy.getName()+".png");
-		battle_result_image = new Texture("../assets/battle_result2.png");
-		batch.draw(battle_result_image, 800, 500);
+		battleImage = new Texture("../assets/battle_"+enemy.getName()+".png");
+		battleResultImage = new Texture("../assets/battle_result2.png");
+		batch.draw(battleResultImage, 800, 500);
 		
-		batch.draw(battle_image, 800, 200);
+		batch.draw(battleImage, 800, 200);
 		font.draw(batch, diceResult, 1000, 750);
 		
 		
@@ -38,12 +38,12 @@ public class CombatManagerOnScreen {
 		
 		font.draw(batch, String.valueOf(enemy.getLife()), 1090, 500);
 		font.draw(batch, String.valueOf(enemy.getAttack()), 1090, 420);
-		battle_image.dispose();
+		battleImage.dispose();
 		
 		
 		
 		
-		battle_result_image.dispose();
+		battleResultImage.dispose();
 		//font.dispose();
 
 	}
@@ -56,15 +56,17 @@ public class CombatManagerOnScreen {
 	}
 
 	public void showLoseGameImage() {
-		lose_game_image = new Texture("../assets/lose_game_image.png");
+		loseGameImage = new Texture("../assets/lose_game_image.png");
 		
-		float imageWidth = lose_game_image.getWidth();
-		float imageHeight = lose_game_image.getHeight();
+		float imageWidth = loseGameImage.getWidth();
+		float imageHeight = loseGameImage.getHeight();
 		float x = (Gdx.graphics.getWidth() - imageWidth) / 2;
 		float y = (Gdx.graphics.getHeight() - imageHeight) / 2;
 		
-		batch.draw(lose_game_image, x, y);
+		batch.draw(loseGameImage, x, y);
 	}
+	
+	//gets and sets
 	public SpriteBatch getBatch() {
 		return batch;
 	}
@@ -74,7 +76,7 @@ public class CombatManagerOnScreen {
 	}
 	
 	public void dispose() {
-		battle_image.dispose();
+		battleImage.dispose();
 		font.dispose();
 	}
 	

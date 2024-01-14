@@ -12,22 +12,19 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.Model.Dice;
 import com.mygdx.game.Model.Enemy;
 import com.mygdx.game.Model.Player;
-import com.mygdx.game.View.CombatManagerOnScreen;
+import com.mygdx.game.View.CombatManagerVisual;
 
 public class CombatManager extends ApplicationAdapter implements InputProcessor {
 	
 	private static CombatManager instance;
-	private CombatManagerOnScreen combatManagerOnScreen = new CombatManagerOnScreen();
-	
+	private CombatManagerVisual combatManagerOnScreen = new CombatManagerVisual();
 	private PlayerController playerController;
 	private EnemyController currentEnemy;
-	
-	
-	
 	private ArrayList<EnemyController> enemiesController;
-	private boolean inCombat=false;
 	private Dice dice6Sides = new Dice(6);
-	private int diceResult=0;
+	
+	
+	private boolean inCombat=false;
 	private boolean enemyHasDied = false;
 	private boolean playerHasDied = false;
 

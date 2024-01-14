@@ -18,7 +18,6 @@ public class PlayerOnScreen extends ElementOnScreen {
 	
 	private float playerSpeed = 200;
 	private boolean playerFreeze = false;
-	private SpriteBatch batch;
 	private boolean isFlipped=false;
 	private BitmapFont font = new BitmapFont();
 

@@ -5,6 +5,7 @@ import java.util.Map;
 public class Player {
 	
 	private String name;
+	private String atributes;
 	
 	
 	private int stregth;
@@ -148,6 +149,16 @@ public class Player {
 	public void setRuse(int ruse) {
 		this.ruse = ruse;
 	}
+
+	public String getAtributes() {
+		return atributes;
+	}
+
+	public void setAtributes(String atributes) {
+		this.atributes = atributes;
+	}
+	
+	
 	
 	
 	

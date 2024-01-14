@@ -16,7 +16,7 @@ public class Menu {
     private SpriteBatch batch;
     private Game game;
     private String name_player;
-
+    
     
     Map<Integer, Texture> pages = new HashMap<>(); 
     // Texture des menus
