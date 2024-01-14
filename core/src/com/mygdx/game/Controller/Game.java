@@ -21,7 +21,7 @@ import com.mygdx.game.View.EnemyOnScreen;
 import com.mygdx.game.View.PlayerOnScreen;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 
-public class Game extends ApplicationAdapter implements InputProcessor {
+public class Game extends ApplicationAdapter {
 	private SpriteBatch batch;
 	private Texture background;
 	private Texture accueil;
@@ -30,14 +30,18 @@ public class Game extends ApplicationAdapter implements InputProcessor {
 	private Texture lifeAndAttack;
 	private String chosenCharacter;
 	static boolean playerHasDied = false;
+	static boolean playerWon=false;
+	private boolean isPaused = false;
 	
 	private PlayerController playerController;
 	
 	private ArrayList <EnemyController>enemiesController = new ArrayList<EnemyController>();
-	private ArrayList <ItemController>itemsController = new ArrayList<ItemController>();
 	
 	private CombatManager combatManager = CombatManager.getInstance();
 	private ItemManager itemManager= new ItemManager();
+	
+	private ArrayList<Command> commands = new ArrayList<Command>();
+	
 	
 	public Game(String chosenCharacter) {
 		this.chosenCharacter = chosenCharacter;
@@ -47,48 +51,38 @@ public class Game extends ApplicationAdapter implements InputProcessor {
 	public void create () {
 		batch = new SpriteBatch();
 		graphicsConfiguration();
-		createTextures();
+		
 		createPlayer();
-		createEnemies();
-		createItems();
 		createManagers();
+		createTextures();
+		createEnemies();
+		itemManager.createItems();
+		
+		
+		createCommands();
 	}
 
 	@Override
 	public void render () {
-
+		
 		ScreenUtils.clear(0, 0, 0, 1);
 		batch.begin();
-		
 		drawCanvas();
 		drawPlayer();
 		drawEnemies();
-		drawItems();
 		checkEndGame();
 		combatManagement();
 		itemManagement();
-		
-		
-		
-		if(Gdx.input.isKeyJustPressed(Keys.A)) {
-			System.out.println(playerController.getPlayer().getBag().getItems());
-			//playerController.getPlayer().getBag().addItem(new UsableItem("teste"));
-			//System.out.println(playerController.getPlayer().getBag().getItems());
-		}
-		
-		
-		
-		/*
-
 		batch.end();
-		*/
-		batch.end();
+		
+		checkCommands();
+		
 	}
 	
 
 	@Override
 	public void dispose () {
-		/*
+		
 		batch.dispose();
 		background.dispose();
 		accueil.dispose();
@@ -99,16 +93,25 @@ public class Game extends ApplicationAdapter implements InputProcessor {
 			enemyController.getEnemyOnScreen().dispose();
 		}
 		combatManager.dispose();
-		*/
+		
+	}
+	
+	private void createCommands() {
+		commands.add(new PauseGame(this));
+		commands.add(new QuitGame(this));
+	}
+	private void checkCommands() {
+		for(Command command:commands) {
+			command.execute();
+		}
 	}
 	
 	public void createManagers(){
 		combatManager.configureCombatManager(batch,playerController,enemiesController);
-		itemManager.configureItemManager(playerController, itemsController);
+		itemManager.configureItemManager(batch,playerController);
 	}
 	
 	public void graphicsConfiguration(){
-		Gdx.input.setInputProcessor(this);
 		Gdx.graphics.setContinuousRendering(true);
 		Gdx.graphics.requestRendering();
 		Gdx.graphics.setResizable(false);
@@ -165,25 +168,12 @@ public class Game extends ApplicationAdapter implements InputProcessor {
 		
 	}
 	
-	public void createItems() {
-		FileReader reader = new FileReader();
-		ArrayList<Map<String,Object>> items = reader.readPhase01Items();
-
-		for(Map<String,Object> item:items) {
-			itemsController.add(new ItemController(batch,item));	
-		}
-	}
-	
-	public void drawItems(){
-		for(ItemController itemController:itemsController) {
-			itemController.getItemOnScreen().draw();
-		}
-	}
 	public void combatManagement() {
 		combatManager.checkCombat();
 	}
 	public void itemManagement() {
 		itemManager.checkItemCollision();
+		itemManager.drawItems();
 	}
 	
 	public static void endGame() {
@@ -198,60 +188,42 @@ public class Game extends ApplicationAdapter implements InputProcessor {
 	            e.printStackTrace();
 	        }
 			System.exit(0);
+		}else if(playerWin()) {
+			System.exit(0);
 		}
 	}
-
-	@Override
-	public boolean keyDown(int keycode) {
-		handleInput(keycode, true);
-		return true;
-	}
-
-	@Override
-	public boolean keyUp(int keycode) {
-		handleInput(keycode, false);
-		return true;
-	}
-
-	private void handleInput(int keycode, boolean isKeyPressed) {
-		// Appel à la méthode playerMovement du joueur avec la touche et l'état de pression
-		//playerOnScreen.playerMovement();
-	}
-
-	@Override
-	public boolean keyTyped(char character) {
+	private boolean playerWin() {
+		if(itemManager.allRelicsCollected() && combatManager.allEnemiesDied()){
+			playerWon = true;
+			return true;
+		}
 		return false;
+
 	}
 
-	@Override
-	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-		return false;
+	
+	
+	
+	public boolean isPlayerWon() {
+		return playerWon;
 	}
 
-	@Override
-	public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-		return false;
+	public void setPlayerWon(boolean playerWon) {
+		this.playerWon = playerWon;
 	}
 
-	@Override
-	public boolean touchCancelled(int screenX, int screenY, int pointer, int button) {
-		return false;
+	public boolean isPaused() {
+		return isPaused;
 	}
 
-	@Override
-	public boolean touchDragged(int screenX, int screenY, int pointer) {
-		return false;
+	public void setPaused(boolean isPaused) {
+		this.isPaused = isPaused;
 	}
 
-	@Override
-	public boolean mouseMoved(int screenX, int screenY) {
-		return false;
+	public PlayerController getPlayerController() {
+		return playerController;
 	}
 
-	@Override
-	public boolean scrolled(float amountX, float amountY) {
-		return false;
-	}
-
+	
 	
 }

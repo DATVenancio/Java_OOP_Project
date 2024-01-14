@@ -12,6 +12,7 @@ public class CombatManagerVisual {
 	private Texture battleImage;
 	private Texture battleResultImage;
 	private Texture loseGameImage;
+	private Texture winGameImage;
 	private SpriteBatch batch;
 	private BitmapFont font = new BitmapFont();
 	private String diceResult=" ";
@@ -64,6 +65,17 @@ public class CombatManagerVisual {
 		float y = (Gdx.graphics.getHeight() - imageHeight) / 2;
 		
 		batch.draw(loseGameImage, x, y);
+	}
+	
+	public void showWinGameImage() {
+		winGameImage = new Texture("../assets/win_game_image.png");
+		
+		float imageWidth = winGameImage.getWidth();
+		float imageHeight = winGameImage.getHeight();
+		float x = (Gdx.graphics.getWidth() - imageWidth) / 2;
+		float y = (Gdx.graphics.getHeight() - imageHeight) / 2;
+		
+		batch.draw(winGameImage, x, y);
 	}
 	
 	//gets and sets

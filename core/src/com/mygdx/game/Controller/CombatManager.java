@@ -30,7 +30,6 @@ public class CombatManager extends ApplicationAdapter implements InputProcessor 
 
 	
 
-	
 	private CombatManager() {};
 	
 	public static CombatManager getInstance() {
@@ -48,6 +47,7 @@ public class CombatManager extends ApplicationAdapter implements InputProcessor 
 	}
 	public void checkCombat() {
 		if(!playerHasDied()) {
+			checkPlayerWon();
 			checkEnemyHasDied();
 			checkEnemyCollision();
 			if(inCombat) {
@@ -57,6 +57,11 @@ public class CombatManager extends ApplicationAdapter implements InputProcessor 
 			}
 		}
 		
+	}
+	public void checkPlayerWon() {
+		if(Game.playerWon) {
+			combatManagerOnScreen.showWinGameImage();
+		}
 	}
 	public boolean playerHasDied() {
 		if(playerHasDied) {
@@ -153,6 +158,14 @@ public class CombatManager extends ApplicationAdapter implements InputProcessor 
 		int playerLife = playerController.getPlayer().getLife();
 		int enemyAttack = currentEnemy.getEnemy().getAttack();
 		playerController.getPlayer().setLife(playerLife-enemyAttack);
+	}
+	public boolean allEnemiesDied() {
+		for(EnemyController enemyController:enemiesController) {
+			if(enemyController.getEnemy().isAlive()) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	

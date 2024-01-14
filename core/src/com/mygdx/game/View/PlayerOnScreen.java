@@ -25,8 +25,8 @@ public class PlayerOnScreen extends ElementOnScreen {
 
 	public PlayerOnScreen(SpriteBatch batch) {
 		this.batch = batch;
-		position = new Vector2(1920, Gdx.graphics.getHeight()/2); //(Gdx.graphics.getWidth() / 2, sprite.getScaleY() * sprite.getHeight() / 2);
-		//sprite.setScale(1.0f);
+		position = new Vector2(1920, Gdx.graphics.getHeight()/2); 
+
 	}
 
 	public void Update() {
@@ -135,10 +135,6 @@ public class PlayerOnScreen extends ElementOnScreen {
 			
 			font.setColor(Color.WHITE);
 		}
-		
-		
-
-
 		
 		
 		font.draw(batch, String.valueOf(player.getLife()), 1500,900);
