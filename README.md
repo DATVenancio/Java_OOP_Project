@@ -24,11 +24,19 @@ Pour exécuter le jeu :
 <p style="background:black;color:white;">$ java -jar desktop-1.0.jar
 </p>
 
-<br>
+
+### **Création du fichier .jar à partir du projet**
 
 Le fichier compressé "Java_OOP_Project.zip" est une version compressée du code source. Pour le lire, décompressez le fichier et accédez au chemin /Java_OOP_Project/core/src/com/mygdx/game.
+<br>
+Pour créer le fichier .jar, à la racine du projet, utilisez la commande:
+<p style="background:black;color:white;">$ ./gradlew desktop:dist
+</p>
+
+Cela créera le fichier .jar dans le chemin :/Java_OOP_Project/desktop/build/libs
 
 <br>
+
 
 ### **Description du projet**
 
