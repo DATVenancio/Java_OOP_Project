@@ -9,9 +9,10 @@ import com.mygdx.game.Model.Item;
 import com.mygdx.game.View.ItemOnScreen;
 
 public class ItemManager {
-	private ArrayList<ItemController> itemsController = new ArrayList<ItemController>();
+	static ArrayList<ItemController> itemsController = new ArrayList<ItemController>();
 	private PlayerController playerController;
 	private SpriteBatch batch;
+	private SoundManager soundManager = SoundManager.getInstance();
 	
 	public void configureItemManager(SpriteBatch batch,PlayerController playerController)
 	{
@@ -25,6 +26,7 @@ public class ItemManager {
 		for(ItemController itemController:itemsController) {
 			if(itemController.getItemOnScreen().isCollidingWith(playerController.getPlayerOnScreen())) {
 				addItemToBag(itemController.getItem());
+				soundManager.playItemCollected();
 				itemToRemove=itemController;
 			}
 		}
@@ -34,7 +36,7 @@ public class ItemManager {
 	}
 	
 	public void createItems() {
-		FileReader reader = new FileReader();
+		InformationReader reader = new InformationReader();
 		ArrayList<Map<String,Object>> items = reader.readPhase01Items();
 
 		for(Map<String,Object> item:items) {
@@ -49,7 +51,7 @@ public class ItemManager {
 	}
 	
 	
-	public boolean allRelicsCollected() {
+	static boolean allRelicsCollected() {
 		for(ItemController itemController:itemsController) {
 			if(itemController.getItem().getType().equals(String.valueOf("usable"))){
 				return false;

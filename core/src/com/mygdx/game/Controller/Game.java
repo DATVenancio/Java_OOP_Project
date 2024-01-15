@@ -8,6 +8,7 @@ import com.badlogic.gdx.Application;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -34,13 +35,11 @@ public class Game extends ApplicationAdapter {
 	private boolean isPaused = false;
 	
 	private PlayerController playerController;
-	
 	private ArrayList <EnemyController>enemiesController = new ArrayList<EnemyController>();
-	
 	private CombatManager combatManager = CombatManager.getInstance();
 	private ItemManager itemManager= new ItemManager();
-	
 	private ArrayList<Command> commands = new ArrayList<Command>();
+	private SoundManager soundManager = SoundManager.getInstance();
 	
 	
 	public Game(String chosenCharacter) {
@@ -49,6 +48,7 @@ public class Game extends ApplicationAdapter {
 	
 	@Override
 	public void create () {
+		
 		batch = new SpriteBatch();
 		graphicsConfiguration();
 		
@@ -57,6 +57,7 @@ public class Game extends ApplicationAdapter {
 		createTextures();
 		createEnemies();
 		itemManager.createItems();
+		soundManager.initialConfiguration();
 		
 		
 		createCommands();
@@ -67,12 +68,23 @@ public class Game extends ApplicationAdapter {
 		
 		ScreenUtils.clear(0, 0, 0, 1);
 		batch.begin();
+		
 		drawCanvas();
 		drawPlayer();
 		drawEnemies();
+		
 		checkEndGame();
+		
 		combatManagement();
 		itemManagement();
+		checkPlayerWin();
+		
+		
+		if(itemManager.allRelicsCollected() && combatManager.allEnemiesDied()) {
+			System.out.println("oi");
+			combatManager.getCombatManagerOnScreen().showWinGameImage();
+		}
+		
 		batch.end();
 		
 		checkCommands();
@@ -121,26 +133,25 @@ public class Game extends ApplicationAdapter {
 	
 	public void createTextures() {
 		background = new Texture("background.png");
-		accueil = new Texture("../assets/accueil.png");
-		bag = new Texture("../assets/bag.png");
-		caracteristic = new Texture("../assets/caracteristic.png");
-		lifeAndAttack = new Texture("../assets/life_attack_image.png");
+		accueil = new Texture("accueil.png");
+		bag = new Texture("bag.png");
+		caracteristic = new Texture("caracteristic.png");
+		lifeAndAttack = new Texture("life_attack_image.png");
 	}
 	
 	public void createPlayer() {
 		playerController = new PlayerController(batch,chosenCharacter);
 	}
-	
 	public void drawCanvas() {
 		float imageWidth = background.getWidth();
 		float imageHeight = background.getHeight();
 		float x = (Gdx.graphics.getWidth() - imageWidth) / 2;
 		float y = (Gdx.graphics.getHeight() - imageHeight) / 2;
 		batch.draw(background, x, y);
-		batch.draw(accueil, 20, 860);
-		batch.draw(bag,0,642);
-		batch.draw(caracteristic,0,0,213,642);
-		batch.draw(lifeAndAttack,1450,800,400,200);
+		batch.draw(accueil, 20, 900);
+		batch.draw(bag,0,0);
+		batch.draw(caracteristic,1300,0,600,223);
+		batch.draw(lifeAndAttack,1425,800,400,200);
 		playerController.getPlayerOnScreen().drawCaracteristics(playerController.getPlayer());
 		playerController.getPlayerOnScreen().drawItemsNames(playerController.getPlayer());
 	}
@@ -152,7 +163,7 @@ public class Game extends ApplicationAdapter {
 	
 	public void createEnemies() {
 		
-		FileReader reader = new FileReader();
+		InformationReader reader = new InformationReader();
 		ArrayList<Map<String,Object>> enemies = reader.readPhase01Enemies();
 
 		for(Map<String,Object> enemy:enemies) {
@@ -182,19 +193,28 @@ public class Game extends ApplicationAdapter {
 	public void checkEndGame() {
 		if(playerHasDied) {
 			try {
-	            Thread.sleep(3000);
+	            Thread.sleep(10000);
 	        } catch (InterruptedException e) {
 
 	            e.printStackTrace();
 	        }
 			System.exit(0);
-		}else if(playerWin()) {
+		}else if(playerWon) {
+			
+			try {
+	            Thread.sleep(10000);
+	        } catch (InterruptedException e) {
+
+	            e.printStackTrace();
+	        }
 			System.exit(0);
 		}
 	}
-	private boolean playerWin() {
+	private boolean checkPlayerWin() {
 		if(itemManager.allRelicsCollected() && combatManager.allEnemiesDied()){
-			playerWon = true;
+			System.out.println("finalise");
+			combatManager.setPlayerHasWon(true);
+			playerWon=true;
 			return true;
 		}
 		return false;
@@ -219,7 +239,7 @@ public class Game extends ApplicationAdapter {
 	public void setPaused(boolean isPaused) {
 		this.isPaused = isPaused;
 	}
-
+	
 	public PlayerController getPlayerController() {
 		return playerController;
 	}

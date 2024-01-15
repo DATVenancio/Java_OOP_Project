@@ -7,6 +7,10 @@ public class PauseGame implements Command {
 	private Game game;
 	private boolean isPaused=false;
 	private PlayerController playerController;
+	SoundManager soundManger = SoundManager.getInstance();
+	
+	
+	
 	public PauseGame(Game game) {
 		this.game = game;
 		this.playerController=game.getPlayerController();
@@ -15,6 +19,7 @@ public class PauseGame implements Command {
 	public void execute() {
 		if (Gdx.input.isKeyPressed(Keys.P)) {
 			isPaused=!isPaused;
+			soundManger.playMusic(!isPaused);
 			playerController.getPlayerOnScreen().setPlayerFreeze(isPaused);
 			waitInMilisec(100);
 		}

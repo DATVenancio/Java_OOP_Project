@@ -1,9 +1,9 @@
 type,name,power,positionX,positionY
 usable,Relique01,0,1000,900
-usable,Relique02,0,1400,600
-usable,Relique03,0,500,600
-weapon,sword,4,1600,700
-weapon,bow,3,1300,600
-weapon,staff,5,1400,400
-weapon,lifeMagicBook,5,1500,600
-weapon,wisdomMagicBook,5,1500,300
+usable,Relique02,0,450,50
+usable,Relique03,0,350,450
+weapon,sword,4,1700,700
+weapon,bow,3,1700,300
+weapon,staff,5,1500,600
+weapon,lifeMagicBook,5,450,900
+weapon,wisdomMagicBook,5,750,250

@@ -112,12 +112,11 @@ public class PlayerOnScreen extends ElementOnScreen {
 	}
 
 	public void drawCaracteristics(Player player) {
-		font.draw(batch, String.valueOf(player.getStregth()), 105, 495);
-
-		font.draw(batch, String.valueOf(player.getIntelligence()), 105, 395);
-		font.draw(batch, String.valueOf(player.getWisdom()), 105, 295);
-		font.draw(batch, String.valueOf(player.getRuse()), 105, 195);
-		font.draw(batch, String.valueOf(player.getStregth()), 105, 95);
+		font.draw(batch, String.valueOf(player.getStregth()), 1375, 75);
+		font.draw(batch, String.valueOf(player.getIntelligence()), 1478, 75);
+		font.draw(batch, String.valueOf(player.getWisdom()), 1586, 75);
+		font.draw(batch, String.valueOf(player.getRuse()), 1694, 75);
+		font.draw(batch, String.valueOf(player.getStregth()), 1800, 75);
 		
 		font.draw(batch, String.valueOf(player.getLife()), 1500,900);
 		font.draw(batch, String.valueOf(player.getAttackBonus()), 1700,900);
@@ -127,7 +126,7 @@ public class PlayerOnScreen extends ElementOnScreen {
 		ArrayList<Item> items = player.getBag().getItems();
 		if(items.size()>0) {
 			font.setColor(Color.BLACK);
-			int initialY = 750;
+			int initialY = 240;
 			for (Item item:items) {
 				font.draw(batch,item.getName(), 45, initialY);
 				initialY-=20;
@@ -135,8 +134,7 @@ public class PlayerOnScreen extends ElementOnScreen {
 			
 			font.setColor(Color.WHITE);
 		}
-		
-		
+
 		font.draw(batch, String.valueOf(player.getLife()), 1500,900);
 		font.draw(batch, String.valueOf(player.getAttackBonus()), 1700,900);
 		
