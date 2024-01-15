@@ -50,8 +50,7 @@ Il nous permet de mettre en oeuvre nos capacitées en Interface Homme Machine, A
 <p>Ce jeu est basé sur la librairie Libgdx afin de réaliser l'interface. Nous codons nos classes en Java.</p> 
 
 <br>
-
-### **Fonctionnalités **
+### **Fonctionnalités**
 
 <p> Le code a été développé selon un modèle de conception MVC (Modèle, Vue, Contrôleur).Chaque dossier du MVC représente l'emplacement des codes respectifs.</p>
 
