@@ -51,7 +51,7 @@ Il nous permet de mettre en oeuvre nos capacitées en Interface Homme Machine, A
 
 <br>
 
-### **Fonctionnalités (quoi dans les repertoires)**
+### **Fonctionnalités**
 
 <p> Le code a été développé selon un modèle de conception MVC (Modèle, Vue, Contrôleur).Chaque dossier du MVC représente l'emplacement des codes respectifs.</p>
 

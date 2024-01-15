@@ -129,7 +129,6 @@ public class Menu {
         // On commence par les exceptions
         // Si la zone cliquée est le bouton plaçant page à 3 => on quitte l'application
         if(currentPage==3) {
-        	System.out.println("Quitter l'application");
             Gdx.app.exit();
         }else if(currentPage==19){
             // Si la page est celle de la fin des menus, alors on démarre la partie Game

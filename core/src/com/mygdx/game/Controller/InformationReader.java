@@ -52,7 +52,6 @@ public class InformationReader {
 		
 		String[] lines = text.split("\n");
 		
-		
 		for(int count=1;count<lines.length;count++) {
 			String line=lines[count];
 			String[] lineParts = line.split(",");
