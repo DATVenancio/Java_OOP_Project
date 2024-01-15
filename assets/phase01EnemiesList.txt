@@ -1,2 +1,6 @@
 enemy,life,attack,positionX,positionY
-geant_nain,20,2,1100,800
+geant_nain,30,2,1100,800
+geant_nain,20,4,1200,400
+geant_nain,30,4,550,100
+geant_nain,20,8,600,600
+chef_geant,45,15,450,450

@@ -8,6 +8,7 @@ import com.badlogic.gdx.Application;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -34,13 +35,11 @@ public class Game extends ApplicationAdapter {
 	private boolean isPaused = false;
 	
 	private PlayerController playerController;
-	
 	private ArrayList <EnemyController>enemiesController = new ArrayList<EnemyController>();
-	
 	private CombatManager combatManager = CombatManager.getInstance();
 	private ItemManager itemManager= new ItemManager();
-	
 	private ArrayList<Command> commands = new ArrayList<Command>();
+	private SoundManager soundManager = SoundManager.getInstance();
 	
 	
 	public Game(String chosenCharacter) {
@@ -49,6 +48,7 @@ public class Game extends ApplicationAdapter {
 	
 	@Override
 	public void create () {
+		
 		batch = new SpriteBatch();
 		graphicsConfiguration();
 		
@@ -57,6 +57,7 @@ public class Game extends ApplicationAdapter {
 		createTextures();
 		createEnemies();
 		itemManager.createItems();
+		soundManager.initialConfiguration();
 		
 		
 		createCommands();
@@ -132,10 +133,10 @@ public class Game extends ApplicationAdapter {
 	
 	public void createTextures() {
 		background = new Texture("background.png");
-		accueil = new Texture("../../build/resources/main/accueil.png");
-		bag = new Texture("../../build/resources/main/bag.png");
-		caracteristic = new Texture("../../build/resources/main/caracteristic.png");
-		lifeAndAttack = new Texture("../../build/resources/main/life_attack_image.png");
+		accueil = new Texture("accueil.png");
+		bag = new Texture("bag.png");
+		caracteristic = new Texture("caracteristic.png");
+		lifeAndAttack = new Texture("life_attack_image.png");
 	}
 	
 	public void createPlayer() {
@@ -162,7 +163,7 @@ public class Game extends ApplicationAdapter {
 	
 	public void createEnemies() {
 		
-		FileReader reader = new FileReader();
+		InformationReader reader = new InformationReader();
 		ArrayList<Map<String,Object>> enemies = reader.readPhase01Enemies();
 
 		for(Map<String,Object> enemy:enemies) {
@@ -238,7 +239,7 @@ public class Game extends ApplicationAdapter {
 	public void setPaused(boolean isPaused) {
 		this.isPaused = isPaused;
 	}
-
+	
 	public PlayerController getPlayerController() {
 		return playerController;
 	}

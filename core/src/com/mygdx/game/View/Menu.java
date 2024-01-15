@@ -9,6 +9,7 @@ import java.util.Map;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.mygdx.game.Controller.Game;
+import com.mygdx.game.Controller.SoundManager;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Input.Keys;
 
@@ -16,6 +17,7 @@ public class Menu {
     private SpriteBatch batch;
     private Game game;
     private String name_player;
+    private SoundManager sounManager = SoundManager.getInstance();
 
     
     Map<Integer, Texture> pages = new HashMap<>(); 
@@ -71,6 +73,7 @@ public class Menu {
 
     // On vient définir une première méthode menu
     public Menu() {
+    	sounManager.playMenuMusic();
         // On démarre le batch
         batch = new SpriteBatch();
         // On y configure les pages

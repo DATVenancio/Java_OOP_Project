@@ -33,7 +33,7 @@ public class PlayerController extends ApplicationAdapter implements InputProcess
 	}
 	
 	public void choosePlayerAttributes(String chosenCharacter){
-		FileReader reader = new FileReader();
+		InformationReader reader = new InformationReader();
 		Map<String,Object> characterInfo  = reader.readCharacterInfo(chosenCharacter);
 
 		this.player = new Player(characterInfo);
