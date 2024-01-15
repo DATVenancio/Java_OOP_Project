@@ -81,7 +81,6 @@ public class Game extends ApplicationAdapter {
 		
 		
 		if(itemManager.allRelicsCollected() && combatManager.allEnemiesDied()) {
-			System.out.println("oi");
 			combatManager.getCombatManagerOnScreen().showWinGameImage();
 		}
 		
@@ -212,7 +211,6 @@ public class Game extends ApplicationAdapter {
 	}
 	private boolean checkPlayerWin() {
 		if(itemManager.allRelicsCollected() && combatManager.allEnemiesDied()){
-			System.out.println("finalise");
 			combatManager.setPlayerHasWon(true);
 			playerWon=true;
 			return true;
