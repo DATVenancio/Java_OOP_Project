@@ -2,19 +2,18 @@ package com.mygdx.game.Model;
 
 public abstract class Item {
 	protected String type;
-	private float weight;
 	protected String name;
-	private String description;
+	protected String description;
+	protected float weight;
+	
 
 	public abstract void actionWhenAdded(Player player);
 	public abstract void actionWhenRemoved(Player player);
-	
 	
 	public Item(String type,String name) {
 		this.type=type;
 		this.name = name;
 	}
-	
 	
 	public void increaseBagTotalWeigth(Bag bag) {
 		float current_total_weight = bag.getTotalWeight();
@@ -24,8 +23,6 @@ public abstract class Item {
 		float current_total_weight = bag.getTotalWeight();
 		bag.setTotalWeight(current_total_weight-this.weight);
 	}
-	
-	
 	
 	public float getWeight() {
 		return weight;

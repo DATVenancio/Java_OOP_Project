@@ -14,6 +14,7 @@ import com.mygdx.game.Model.Enemy;
 import com.mygdx.game.Model.Player;
 import com.mygdx.game.View.CombatManagerVisual;
 
+//Classe pour gérer le combat. Application du pattern singleton pour assurer le contrôle dans les sections critiques du code
 public class CombatManager extends ApplicationAdapter implements InputProcessor {
 	
 	private static CombatManager instance;
@@ -33,7 +34,7 @@ public class CombatManager extends ApplicationAdapter implements InputProcessor 
 	
 
 	private CombatManager() {};
-	
+	//Assure la création d’un seul objet
 	public static CombatManager getInstance() {
 		if(instance == null) {
 			instance = new CombatManager();
@@ -47,6 +48,7 @@ public class CombatManager extends ApplicationAdapter implements InputProcessor 
 		this.playerController=playerController;
 		this.enemiesController=enemiesController;
 	}
+	//Confirme si le joueur est en combat
 	public void checkCombat() {
 		
 		if(playerHasWon) {

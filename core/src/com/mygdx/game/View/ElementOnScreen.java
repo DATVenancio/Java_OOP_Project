@@ -5,6 +5,8 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 
+//Classe de base pour tous les éléments insérés visuellement sur le plateau de jeu (joueur, ennemis, items)
+
 public class ElementOnScreen extends ApplicationAdapter{
 	protected Vector2 position;
 	protected Sprite sprite;

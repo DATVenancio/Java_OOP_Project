@@ -7,6 +7,7 @@ public class Bag {
 	private int amountOfItems;
 	private float totalWeight;
 	
+
 	private Player player;
 	private ArrayList<Item> items = new ArrayList<Item>();
 	
@@ -16,10 +17,6 @@ public class Bag {
 		this.totalWeight=0;
 		this.player=player;
 	}
-	
-
-	
-	
 	public void addItem(Item item) {
 		if(amountOfItems<capacity) {
 			items.add(item);

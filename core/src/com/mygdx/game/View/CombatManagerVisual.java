@@ -8,6 +8,7 @@ import com.mygdx.game.Controller.EnemyController;
 import com.mygdx.game.Model.Enemy;
 import com.mygdx.game.Model.Player;
 
+//Classe pour contrôler le front-end des batailles, y compris la collision entre le joueur et l'ennemi.
 public class CombatManagerVisual {
 	private Texture battleImage;
 	private Texture battleResultImage;

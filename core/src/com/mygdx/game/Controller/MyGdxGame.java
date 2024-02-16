@@ -11,7 +11,7 @@ import com.mygdx.game.View.Menu;
 
 
 
-
+//Classe initiale de la structure du fichier. Le projet initialise la classe et il se charge de démarrer le menu qui lancera plus tard le jeu
 public class MyGdxGame extends ApplicationAdapter {
 	private Menu menu;
 

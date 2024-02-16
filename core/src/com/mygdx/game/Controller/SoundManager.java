@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 
+//Classe "Manager" utilisée pour centraliser le contrôle audio des phases
 public class SoundManager {
 	
 	

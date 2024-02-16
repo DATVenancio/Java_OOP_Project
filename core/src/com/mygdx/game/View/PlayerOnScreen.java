@@ -12,7 +12,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.mygdx.game.Model.Item;
 import com.mygdx.game.Model.Player;
-
+//Classe pour contrôler le front-end du joueur
 public class PlayerOnScreen extends ElementOnScreen {
 	
 	
@@ -28,10 +28,10 @@ public class PlayerOnScreen extends ElementOnScreen {
 		position = new Vector2(1920, Gdx.graphics.getHeight()/2); 
 
 	}
-
+	//méthode appelée à chaque fois que le joueur est dessiné sur l'écran. sa fonction principale est d'appeler la méthode qui contrôle le mouvement du joueur
 	public void Update() {
 		
-		
+
 		if(!playerFreeze) playerMovement();
 
 	}
@@ -46,7 +46,7 @@ public class PlayerOnScreen extends ElementOnScreen {
 		batch.dispose();
 	}
 
-	
+	//méthode utilisée pour contrôler le mouvement du joueur
 	public void playerMovement() {
 
 		float deltaTime = Gdx.graphics.getDeltaTime();
@@ -110,7 +110,7 @@ public class PlayerOnScreen extends ElementOnScreen {
 			position.y=Gdx.graphics.getHeight()-sprite.getHeight()*sprite.getScaleY();
 		}
 	}
-
+	// méthode utilisée pour dessiner des éléments visuels du joueur sur le "canva"
 	public void drawCaracteristics(Player player) {
 		font.draw(batch, String.valueOf(player.getStregth()), 1375, 75);
 		font.draw(batch, String.valueOf(player.getIntelligence()), 1478, 75);

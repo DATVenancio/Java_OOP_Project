@@ -41,7 +41,7 @@ public class Game extends ApplicationAdapter {
 	private ArrayList<Command> commands = new ArrayList<Command>();
 	private SoundManager soundManager = SoundManager.getInstance();
 	
-	
+	//Classe principale qui gère le fonctionnement du jeu
 	public Game(String chosenCharacter) {
 		this.chosenCharacter = chosenCharacter;
 	}
@@ -62,7 +62,7 @@ public class Game extends ApplicationAdapter {
 		
 		createCommands();
 	}
-
+	//méthode appelée constamment
 	@Override
 	public void render () {
 		

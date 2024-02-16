@@ -14,6 +14,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
 
+//Classe utilisée pour lire les fichiers .txt utilisés pour stocker les informations sur l'état initial
 public class InformationReader {
 	
 

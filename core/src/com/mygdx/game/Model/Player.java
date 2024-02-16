@@ -21,7 +21,7 @@ public class Player {
 	
 	private Bag bag;
 	private Designation designation;
-	
+	//Classe pour contrôler le joueur dans le backend
 	public Player() {}
 	
 	public Player(Map<String,Object> characterInfo) {

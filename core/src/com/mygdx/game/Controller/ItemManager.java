@@ -8,6 +8,8 @@ import com.badlogic.gdx.utils.SortedIntList.Iterator;
 import com.mygdx.game.Model.Item;
 import com.mygdx.game.View.ItemOnScreen;
 
+
+//Classe Central "Manager" pour organiser les éléments de la phase
 public class ItemManager {
 	static ArrayList<ItemController> itemsController = new ArrayList<ItemController>();
 	private PlayerController playerController;
